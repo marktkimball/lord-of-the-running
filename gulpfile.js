@@ -3,7 +3,6 @@ var args = require('yargs').argv;
 var browserSync = require('browser-sync');
 var config = require('./gulp.config')();
 var del = require('del');
-
 var $ = require('gulp-load-plugins')({
   lazy: true,
   rename: {
@@ -90,7 +89,7 @@ gulp.task('serve-dev', ['inject'], function() {
   };
 
   return $.nodemon(nodemonOptions)
-    .on('restart', ['vet'], function(event) {
+    .on('restart', function(event) {
       log('*** Server restarted ***');
       log('files changed on restart:\n' + event);
     })
@@ -165,7 +164,5 @@ function startBrowserSync() {
     reloadDelay: 1000
   };
 
-  setTimeout(function() {
-    browserSync(options)
-  }, 100);
+  browserSync(options);
 }

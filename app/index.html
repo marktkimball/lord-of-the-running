@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Demo Auth In Angular</title>
+  <title>Lord of the Running</title>
   <link href="favicon.png" rel="shortcut icon">
   <link href="//fonts.googleapis.com/css?family=Roboto|Montserrat:400,700|Open+Sans:400,300,600" rel="stylesheet">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -23,11 +23,13 @@
 
 <body>
 
+
   <ng-include src="'home/views/navbar.html'"></ng-include>
 
   <div ng-view class="fadeZoom"></div>
 
   <!-- bower:js -->
+  <script src="vendor/jquery/dist/jquery.js"></script>
   <script src="vendor/angular/angular.js"></script>
   <script src="vendor/angular-animate/angular-animate.js"></script>
   <script src="vendor/angular-messages/angular-messages.js"></script>
@@ -36,6 +38,11 @@
   <script src="vendor/angular-strap/dist/angular-strap.tpl.js"></script>
   <script src="vendor/satellizer/satellizer.js"></script>
   <script src="vendor/angular-sanitize/angular-sanitize.js"></script>
+  <script src="vendor/lodash/lodash.js"></script>
+  <script src="vendor/angular-google-maps/dist/angular-google-maps.js"></script>
+  <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="vendor/angular-modal-service/dst/angular-modal-service.js"></script>
+  <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <!-- endbower -->
 
 
@@ -47,9 +54,6 @@
   <script src="profile/profile.module.js"></script>
   <script src="profile/profile.controller.js"></script>
   <script src="profile/profile.accountService.js"></script>
-  <script src="posts/posts.module.js"></script>
-  <script src="posts/posts.postService.js"></script>
-  <script src="posts/posts.controller.js"></script>
   <script src="app.module.js"></script>
   <script src="home/navbar.js"></script>
   <script src="controllers/navbar.js"></script>

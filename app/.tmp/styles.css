@@ -1,6 +1,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
-  background: #e4e7ec; }
+  background: #e4e7ec;
+  height: 100vh; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
@@ -9,12 +10,14 @@ h1, h2, h3, h4, h5, h6 {
 a {
   color: #000; }
 
+.container {
+  width: 100%; }
+
 .text-muted {
   color: #90939a; }
 
 .navbar {
-  border: 0;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
+  border: 0; }
 
 .navbar-header {
   float: left;
@@ -36,10 +39,10 @@ a {
 
 .navbar-default .navbar-brand {
   color: #fff;
-  background-color: #ce832c; }
+  background-color: #E3B275; }
 
 .navbar-default .navbar-brand:hover {
-  color: #ce832c;
+  color: #E3B275;
   background-color: #fff; }
 
 .navbar-brand {
@@ -49,8 +52,7 @@ a {
 
 .panel {
   border-color: #cfd9D7;
-  border-radius: 2px;
-  box-shadow: 0 8px 17px rgba(0, 0, 0, 0.2); }
+  border-radius: 2px; }
 
 .panel-default > .panel-heading {
   font-size: 85%;
@@ -126,8 +128,7 @@ a {
   cursor: default;
   background: #323232;
   border-radius: 2px;
-  outline: none;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
+  outline: none; }
 
 .profile-picture {
   height: 100px;
@@ -135,8 +136,7 @@ a {
 
 .btn {
   font-weight: bold;
-  border-radius: 2px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
+  border-radius: 2px; }
 
 .btn-primary {
   background-color: #4285f4; }

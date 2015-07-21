@@ -19,6 +19,11 @@ angular.module('profile')
         });
     };
 
+    $scope.logProfile = function () {
+      console.log($scope.user.displayName);
+      return $scope.user.displayName + "";
+    }
+
 
     /**
      * Update user's profile information.
@@ -91,4 +96,10 @@ angular.module('profile')
 
     $scope.getProfile();
 
+  });
+
+
+  angular.module('profile')
+    .controller('CollapseDemoCtrl', function ($scope) {
+    $scope.isCollapsed = false;
   });

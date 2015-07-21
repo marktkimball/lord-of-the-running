@@ -34,13 +34,16 @@ angular.module('auth', ['ngMessages', 'ngRoute', 'mgcrea.ngStrap', 'satellizer']
         redirectTo: '/'
       });
 
+    // $authProvider.strava({
+    //   url: 'https://www.strava.com/oauth/authorize?client_id=7062&response_type=code&redirect_uri=http://localhost:3000/token_exchange&scope=public&approval_prompt=force'
+    // });
 
     $authProvider.facebook({
       clientId: '657854390977827'
     });
 
     $authProvider.google({
-      clientId: '587791673437-u2c6ujn8ct3nihm0vaq9cb0f0ukd33f2.apps.googleusercontent.com'
+      clientId: '535632442293-ln2thejarbek7t4du6tepg15gagnp168.apps.googleusercontent.com'
     });
 
     $authProvider.github({

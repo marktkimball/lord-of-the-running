@@ -5,7 +5,7 @@ angular.module('MyApp', [
   'mgcrea.ngStrap',
   'auth',
   'profile',
-  'posts'
+  'uiGmapgoogle-maps'
 ])
 
 .config(function($routeProvider) {
@@ -20,3 +20,8 @@ angular.module('MyApp', [
       redirectTo: '/404'
     });
 });
+angular
+    .module('lodash', [])
+    .factory('_', function($window){
+      return $window._;
+    });

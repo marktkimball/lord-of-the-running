@@ -1,13 +1,12 @@
 {
-  "name": "ng-authDemo",
+  "name": "LordoftheRunning",
   "version": "0.0.0",
   "authors": [
-    "Calvin Webster <calweb@gmail.com>"
+    "Mark Kimball"
   ],
-  "description": "Simple demo using http://github.com/sahat/satellizer for auth",
-
+  "description": "Gamification of running app",
   "keywords": [
-    "demo"
+    ""
   ],
   "license": "MIT",
   "ignore": [
@@ -23,7 +22,10 @@
     "angular-messages": "~1.3.14",
     "angular-route": "~1.3.14",
     "angular-strap": "~2.2.0",
-    "satellizer": "~0.11.2",
-    "angular-sanitize": "~1.3.14"
+    "satellizer": "~0.9.3",
+    "angular-sanitize": "~1.3.14",
+    "angular-google-maps": "~2.1.5",
+    "angular-modal-service": "~0.6.6",
+    "angular-bootstrap": "~0.13.0"
   }
 }
