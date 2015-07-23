@@ -96,10 +96,14 @@ angular.module('profile')
 
     $scope.getProfile();
 
-  });
+    this.tab = false;
 
+    this.selectTab = function(value){
+      this.tab = value;
+    };
 
-  angular.module('profile')
-    .controller('CollapseDemoCtrl', function ($scope) {
-    $scope.isCollapsed = false;
+    // this.isSelected = function(checkTab){
+    //   return this.tab === checkTab;
+    // };
+
   });

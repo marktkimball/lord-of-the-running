@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Lord of the Running</title>
-  <link href="favicon.png" rel="shortcut icon">
-  <link href="//fonts.googleapis.com/css?family=Roboto|Montserrat:400,700|Open+Sans:400,300,600" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Cinzel+Decorative:700' rel='stylesheet' type='text/css'>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -25,6 +24,7 @@
 
 
   <ng-include src="'home/views/navbar.html'"></ng-include>
+  <!-- <ng-include src="'map/mapView.html'"></ng-include> -->
 
   <div ng-view class="fadeZoom"></div>
 
@@ -39,10 +39,9 @@
   <script src="vendor/satellizer/satellizer.js"></script>
   <script src="vendor/angular-sanitize/angular-sanitize.js"></script>
   <script src="vendor/lodash/lodash.js"></script>
-  <script src="vendor/angular-google-maps/dist/angular-google-maps.js"></script>
-  <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="vendor/angular-modal-service/dst/angular-modal-service.js"></script>
   <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=weather,visualization,panoramio"></script>
+  <script src="vendor/ngmap/build/scripts/ng-map.js"></script>
   <!-- endbower -->
 
 
@@ -54,6 +53,9 @@
   <script src="profile/profile.module.js"></script>
   <script src="profile/profile.controller.js"></script>
   <script src="profile/profile.accountService.js"></script>
+  <script src="map/map.module.js"></script>
+  <script src="map/map.service.js"></script>
+  <script src="map/map.controller.js"></script>
   <script src="app.module.js"></script>
   <script src="home/navbar.js"></script>
   <script src="controllers/navbar.js"></script>

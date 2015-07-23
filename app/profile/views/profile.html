@@ -1,74 +1,78 @@
-<div class="container">
+<div class="container" ng-controller="ProfileController as ProfileCtrl">
   <div class="row">
-  <div class="col-sm-6">
-  <div class="panel panel-default">
-    <div class="panel-heading">Profile</div>
-    <div class="panel-body">
-
-      <form method="post" ng-submit="updateProfile()">
-        <div class="form-group">
-          <legend><i class="fa fa-globe"></i> My Profile</legend>
-          <img class="profile-picture" ng-src="{{user.picture || 'http://www.fillmurray.com/100/100'}}">
+    <div class="col-sm-7">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form method="post" ng-submit="updateProfile()">
+            <div class="form-group">
+              <legend><i class="fa fa-user"></i> My Profile</legend>
+              <img class="profile-picture" ng-src="{{user.picture || 'http://virtualpiano.net/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png'}}">
+              <div class="profileInfoText">
+                <ul>
+                  <li><h2>{{user.displayName}}</h2></li>
+                  <li><label class="control-label"></i>Name: <span class="pro5">{{user.name}}</span></label></li>
+                  <li><label class="control-label"></i>Progress: <span class="pro5">{{user.progress}} %</span></label></li>
+                  <li><label class="control-label"></i>Total Mileage: <span class="pro5">{{user.runs.length}}</span></label></li>
+                  <li><label class="control-label"></i>Total Runs: <span class="pro5">{{user.runs.length}}</span></label></li>
+                  <li><label class="control-label"></i>Email: <span class="pro5">{{user.email}}</span></label></li>
+                  <li><label class="control-label"></i>Location: <span class="pro5">{{user.location}}</span></label></li>
+                  <li><label class="control-label"></i>Joined: <span class="pro5">{{user.joinDate}}</span></label></li>
+                </ul>
+              </div>
+            </div>
+          </form>
+          <button class="btn btn-warning" ng-click="ProfileCtrl.selectTab(true)">Edit My Profile</button>
+          <button class="btn btn-stravaLink" ng-if="user.strava" ng-click="unlink('strava')">Unlink Strava Account</button>
+          <button class="btn btn-stravaLink" ng-if="!user.strava" ng-click="link('strava')">Link Strava Account</button>
         </div>
-        <div class="form-group">
-          <label class="control-label"><i class="ion-person"></i> Display Name: <span class="pro5">{{user.displayName}}</span></label>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <legend><i class="fa fa-trophy"></i> Achievements</legend>
         </div>
-        <div class="form-group">
-          <label class="control-label"><i class="ion-at"></i> Email Address: <span class="pro5">{{user.email}}</span></label>
-        </div>
-      </form>
-
-  </div>
-</div>
-</div>
-
-
-<div class="col-sm-6">
-  <div class="panel panel-default">
-    <div class="panel-heading">Accounts</div>
-    <div class="panel-body">
-      <legend><i class="ion-link"></i> Linked Accounts</legend>
-      <div class="btn-group-vertical">
-
-        <button class="btn btn-sm btn-danger" ng-if="user.google" ng-click="unlink('google')">
-          <i class="ion-social-googleplus"></i> Unlink Google Account
-        </button>
-        <button class="btn btn-sm btn-primary" ng-if="!user.google" ng-click="link('google')">
-          <i class="ion-social-googleplus"></i> Link Google Account
-        </button>
-
       </div>
     </div>
   </div>
-</div>
 
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">Edit</div>
-  <div class="panel-body">
-    <legend><i class="ion-clipboard"></i> Edit My Profile</legend>
-  <div ng-controller="CollapseDemoCtrl">
-<button class="btn btn-warning" ng-click="isCollapsed = !isCollapsed">Edit My Profile</button>
-<hr>
-<div collapse="!isCollapsed">
-  <div class="well well-lg">
-    <form method="post" ng-submit="updateProfile()">
-      <div class="form-group">
-        <label class="control-label"><i class="ion-person"></i> Display Name:</label>
-        <input type="text" class="form-control" ng-model="user.displayName" />
+  <div class="panel panel-default" ng-show="ProfileCtrl.tab">
+    <div class="panel-body">
+      <legend><i class="ion-clipboard"></i> Update Profile</legend>
+      <div>
+        <div collapse="!isCollapsed">
+          <div class="well well-lg">
+            <form method="post" ng-submit="updateProfile()">
+              <div class="form-group">
+                <label class="control-label"><i class="fa fa-user"></i> Username:</label>
+                <input type="text" class="form-control" ng-model="user.displayName" />
+              </div>
+              <div class="form-group">
+                <label class="control-label"><i class="ion-at"></i> Email Address: </label>
+                <input type="email" class="form-control" ng-model="user.email" />
+              </div>
+              <div class="form-group">
+                <label class="control-label"><i class="fa fa-map-marker"></i> Location: </label>
+                <input type="text" class="form-control" ng-model="user.location" />
+              </div>
+              <button class="btn btn-lg btn-success" ng-click="ProfileCtrl.selectTab(false)">Update Information</button>
+              </form>
+            <button class="btn btn-lg btn-danger cancelProfileUpdate" ng-click="ProfileCtrl.selectTab(false)">Cancel</button>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label class="control-label"><i class="ion-at"></i> Email Address: </label>
-        <input type="email" class="form-control" ng-model="user.email" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <legend>Recent Runs</legend>
+
+        </div>
       </div>
-      <button class="btn btn-lg btn-success">Update Information</button>
-    </form>
-
-
-</div>
-</div>
-
+    </div>
   </div>
-  </div>
+
 </div>

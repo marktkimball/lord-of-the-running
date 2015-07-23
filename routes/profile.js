@@ -25,6 +25,14 @@ router.route('/me')
       // user.newProperty = req.body.newProperty || user.newProperty
       user.displayName = req.body.displayName || user.displayName;
       user.email = req.body.email || user.email;
+      user.name = req.body.name || user.name;
+      user.picture = req.body.picture || user.picture;
+      user.location = req.body.location || user.location;
+      user.runs = req.body.runs || user.runs;
+      user.difficulty = req.body.difficulty || user.difficulty;
+      user.achievements = req.body.achievements || user.achievements;
+      user.joinDate = req.body.joinDate || user.joinDate;
+      user.progress = req.body.progress || user.progress;
       user.save(function(err) {
         res.status(200).end();
       });

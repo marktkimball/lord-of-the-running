@@ -5,6 +5,7 @@ var request = require('request');
 var moment = require('moment');
 var jwt = require('jwt-simple');
 var config = require('../config');
+var strava = require('strava-v3');
 var mongoose = require('mongoose');
 var User = require('../entities/User');
 var ensureAuthenticated = require('./helpers').ensureAuthenticated;
@@ -52,7 +53,6 @@ router.route('/login')
  */
  router.route('/signup')
   .post(function(req, res) {
-    console.log("Hi");
     User.findOne({ email: req.body.email }, function(err, existingUser) {
       if (existingUser) {
         return res.status(409).send({ message: 'Email is already taken' });
@@ -69,6 +69,28 @@ router.route('/login')
       });
     });
   });
+
+/*
+ |--------------------------------------------------------------------------
+ | Login in Strava
+ |--------------------------------------------------------------------------
+ */
+//https://www.strava.com/oauth/authorize?client_id=7062&response_type=code&redirect_uri=http://localhost:3000/token_exchange&scope=public&approval_prompt=force
+ router.route('/strava')
+  .post(function(req, res){
+    // var accessUrl = 'https://www.strava.com/oauth/authorize';
+    var params = {
+      client_id: req.body.clientId,
+      redirect_uri: req.body.redirectUri,
+      client_secret: config.STRAVA_SECRET,
+      response_type: 'code'
+    };
+    var url = strava.oauth.getRequestAccessURL({scope: "public"});
+    console.log("Strava url: ", url);
+    request.get({url: url, qs: params}, function(err, res, data){
+      // console.log('res: ', res, 'data: ', data);
+    })
+  })
 
 /*
  |--------------------------------------------------------------------------

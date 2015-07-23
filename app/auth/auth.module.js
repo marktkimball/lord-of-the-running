@@ -5,10 +5,6 @@ angular.module('auth', ['ngMessages', 'ngRoute', 'mgcrea.ngStrap', 'satellizer']
         templateUrl: 'auth/views/login.html',
         controller: 'LoginCtrl'
       })
-      .when('/signup', {
-        templateUrl: 'auth/views/signup.html',
-        controller: 'SignupCtrl'
-      })
       .when('/logout', {
         template: null,
         controller: 'LogoutCtrl'
@@ -34,9 +30,11 @@ angular.module('auth', ['ngMessages', 'ngRoute', 'mgcrea.ngStrap', 'satellizer']
         redirectTo: '/'
       });
 
-    // $authProvider.strava({
-    //   url: 'https://www.strava.com/oauth/authorize?client_id=7062&response_type=code&redirect_uri=http://localhost:3000/token_exchange&scope=public&approval_prompt=force'
-    // });
+    $authProvider.strava({
+      clientId: '7062',
+      url: '/auth/strava'
+
+    });
 
     $authProvider.facebook({
       clientId: '657854390977827'
