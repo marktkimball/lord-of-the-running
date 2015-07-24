@@ -29,7 +29,6 @@
   <div ng-view class="fadeZoom"></div>
 
   <!-- bower:js -->
-  <script src="vendor/jquery/dist/jquery.js"></script>
   <script src="vendor/angular/angular.js"></script>
   <script src="vendor/angular-animate/angular-animate.js"></script>
   <script src="vendor/angular-messages/angular-messages.js"></script>
@@ -38,12 +37,52 @@
   <script src="vendor/angular-strap/dist/angular-strap.tpl.js"></script>
   <script src="vendor/satellizer/satellizer.js"></script>
   <script src="vendor/angular-sanitize/angular-sanitize.js"></script>
-  <script src="vendor/lodash/lodash.js"></script>
   <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="vendor/lodash/lodash.js"></script>
+  <!-- endbower -->
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=weather,visualization,panoramio"></script>
   <script src="vendor/ngmap/build/scripts/ng-map.js"></script>
-  <!-- endbower -->
+  <script>
+  function getNormalizedCoord(coord, zoom) {
+    var y = coord.y;
+    var x = coord.x;
+    var tileRange = 1 << zoom;
 
+    if (y < 0 || y >= tileRange) {
+      return null;
+    }
+
+    return {
+      x: x,
+      y: y
+    };
+  };
+
+  var middleEarthTypeOptions = {
+    getTileUrl: function(coord, zoom) {
+        var normalizedCoord = getNormalizedCoord(coord, zoom);
+        if (!normalizedCoord) {
+          return null;
+        }
+        var bound = Math.pow(2, zoom);
+        return 'assets/middle_earth_map' +
+            '/' + zoom + '/' + normalizedCoord.x + '/' +
+            normalizedCoord.y + '.png';
+    },
+    tileSize: new google.maps.Size(256, 256),
+    maxZoom: 4,
+    minZoom: 2,
+    name: 'Middle Earth'
+  };
+
+  var middleEarthMapType = new google.maps.ImageMapType(middleEarthTypeOptions);
+
+  var mapTypeChanged = function() {
+    var showStreetViewControl = this.getMapTypeId() != 'coordinate';
+    this.setOptions({'streetViewControl': showStreetViewControl});
+  };
+
+  </script>
 
   <!-- Application Code -->
   <!-- inject:js -->

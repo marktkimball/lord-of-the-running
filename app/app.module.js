@@ -12,7 +12,8 @@ angular.module('MyApp', [
 .config(function($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'home/views/home.html'
+      templateUrl: 'home/views/home.html',
+      controller: 'MapTypeImageCtrl'
     })
     .when('/404', {
       template: '<h1>Sorry, page not found</h1>'

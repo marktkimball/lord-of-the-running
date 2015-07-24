@@ -1,13 +1,21 @@
 @import "partials/auth";
 
-$background-color: #E1DED7;
+$background-color: #969B6E;
+$sign-in-color: #E1DED7;
 $main-font-color: #393834;
 $stravaOrange: #FC4C02;
+$materialDesignLevelTwoShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+html{
+  height:100%;
+  width:100%;
+}
 
 body {
   font-family: 'Open Sans', sans-serif;
   background: $background-color;
   height: 100vh;
+  width:100%;
   color: $main-font-color;
 }
 
@@ -34,6 +42,14 @@ a {
   background-size: cover;
 }
 
+map{
+  height:800px;
+  width: 98%;
+  margin:auto;
+  border: 5px solid #444;
+  box-shadow: $materialDesignLevelTwoShadow;
+}
+
 .container{
   width: 100%;
 }
@@ -42,7 +58,7 @@ a {
   position: absolute;
   height:100%;
   text-align: center;
-  color: $background-color;
+  color: $sign-in-color;
   background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5));
   .center-form{
     background-color:transparent;
@@ -57,7 +73,7 @@ a {
     font-family: 'Cinzel Decorative', cursive;
   }
   a{
-    color: $background-color;
+    color: $sign-in-color;
   }
   p{
     margin:5px;
@@ -144,14 +160,18 @@ a {
   float: left;
 }
 
-.navbar-nav > li > a {
+.navbar-default .navbar-nav > li > a {
+  color: #864D2B;
   padding: 15px;
+  &:hover{
+    color: #444;
+  }
 }
 
 .navbar-default {
   color: #fff;
-  background: #fff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  background: #DBCDAC;
+  box-shadow: $materialDesignLevelTwoShadow;
 }
 
 .navbar-default .navbar-brand {
@@ -161,8 +181,8 @@ a {
 }
 
 .navbar-default .navbar-brand:hover {
-  color: #864D2B;
-  background-color: #fff;
+  color: #fff;
+  background-color: #864D2B;
 }
 
 .navbar-brand {
@@ -173,6 +193,10 @@ a {
 .panel {
   border-color: #cfd9D7;
   border-radius: 2px;
+}
+
+.panel-body{
+  box-shadow: $materialDesignLevelTwoShadow;
 }
 
 .panel-default > .panel-heading {
@@ -278,6 +302,8 @@ a {
 .btn {
   font-weight: bold;
   border-radius: 2px;
+  box-shadow: $materialDesignLevelTwoShadow;
+  margin-right:15px;
 }
 
 .btn-primary {

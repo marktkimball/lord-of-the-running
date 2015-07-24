@@ -1,3 +1,9 @@
-<div class="container">
-  <ng-include ng-controller="MapController" src="'../../map/mapView.html'"></ng-include>
+<div class="mapContainer">
+  <div class="map">
+    <map zoom="3" center="{{map.center.longitude}}, {{map.center.latitude}}" street-view-control="false" map-type-id="middleEarth" map-type-control-options="{mapTypeIds: ['middleEarth']}"  disable-default-u-i="true" zoom-control="true" pan-control="true">
+      <map-type name="middleEarth" object="middleEarthMapType"></map-type>
+      <shape name="polyline" path="{{frodoJourneyCoordinates}}" geodesic="true" stroke-color="#FF0000" stroke-opacity="1.0" stroke-weight="4">
+    </shape>
+    </map>
+  </div>
 </div>
