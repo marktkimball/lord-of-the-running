@@ -10,13 +10,13 @@
               <div class="profileInfoText">
                 <ul>
                   <li><h2>{{user.displayName}}</h2></li>
-                  <li><label class="control-label"></i>Name: <span class="pro5">{{user.name}}</span></label></li>
-                  <li><label class="control-label"></i>Progress: <span class="pro5">{{user.progress}} %</span></label></li>
-                  <li><label class="control-label"></i>Total Mileage: <span class="pro5">{{user.runs.length}}</span></label></li>
-                  <li><label class="control-label"></i>Total Runs: <span class="pro5">{{user.runs.length}}</span></label></li>
-                  <li><label class="control-label"></i>Email: <span class="pro5">{{user.email}}</span></label></li>
-                  <li><label class="control-label"></i>Location: <span class="pro5">{{user.location}}</span></label></li>
-                  <li><label class="control-label"></i>Joined: <span class="pro5">{{user.joinDate}}</span></label></li>
+                  <li><label class="control-label">Name: <span class="pro5">{{user.name}}</span></label></li>
+                  <li><label class="control-label">Progress: <span class="pro5">{{user.progress}} %</span></label></li>
+                  <li><label class="control-label">Total Mileage: <span class="pro5">{{runs.length}}</span></label></li>
+                  <li><label class="control-label">Total Runs: <span class="pro5">{{runs.length}}</span></label></li>
+                  <li><label class="control-label">Email: <span class="pro5">{{user.email}}</span></label></li>
+                  <li><label class="control-label">Location: <span class="pro5">{{user.location}}</span></label></li>
+                  <li><label class="control-label">Joined: <span class="pro5">{{user.joinDate}}</span></label></li>
                 </ul>
               </div>
             </div>
@@ -31,6 +31,15 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <legend><i class="fa fa-trophy"></i> Achievements</legend>
+          <ul class="achievementsList">
+            <li>Last Landmark: The Dead Marshes</li>
+            <li>Next Landmark: The Black Gates</li>
+            <li>Miles Until Next Landmark: 18.45 miles</li>
+            <li>Farthest Run: 20.2 miles</li>
+            <li>Fastest Pace: 6:54 / mile</li>
+            <li>Fastest Completion of Journey: 48 days (Hobbit)</li>
+            <li>Highest Level Completed: Man</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -40,26 +49,22 @@
     <div class="panel-body">
       <legend><i class="ion-clipboard"></i> Update Profile</legend>
       <div>
-        <div collapse="!isCollapsed">
-          <div class="well well-lg">
-            <form method="post" ng-submit="updateProfile()">
-              <div class="form-group">
-                <label class="control-label"><i class="fa fa-user"></i> Username:</label>
-                <input type="text" class="form-control" ng-model="user.displayName" />
-              </div>
-              <div class="form-group">
-                <label class="control-label"><i class="ion-at"></i> Email Address: </label>
-                <input type="email" class="form-control" ng-model="user.email" />
-              </div>
-              <div class="form-group">
-                <label class="control-label"><i class="fa fa-map-marker"></i> Location: </label>
-                <input type="text" class="form-control" ng-model="user.location" />
-              </div>
-              <button class="btn btn-lg btn-success" ng-click="ProfileCtrl.selectTab(false)">Update Information</button>
-              </form>
-            <button class="btn btn-lg btn-danger cancelProfileUpdate" ng-click="ProfileCtrl.selectTab(false)">Cancel</button>
+        <form method="post" ng-submit="updateProfile()">
+          <div class="form-group">
+            <label class="control-label"><i class="fa fa-user"></i> Username:</label>
+            <input type="text" class="form-control" ng-model="user.displayName" />
           </div>
-        </div>
+          <div class="form-group">
+            <label class="control-label"><i class="ion-at"></i> Email Address: </label>
+            <input type="email" class="form-control" ng-model="user.email" />
+          </div>
+          <div class="form-group">
+            <label class="control-label"><i class="fa fa-map-marker"></i> Location: </label>
+            <input type="text" class="form-control" ng-model="user.location" />
+          </div>
+          <button class="btn btn-lg btn-success" ng-click="ProfileCtrl.selectTab(false)">Update Information</button>
+          </form>
+        <button class="btn btn-lg btn-danger cancelProfileUpdate" ng-click="ProfileCtrl.selectTab(false)">Cancel</button>
       </div>
     </div>
   </div>
@@ -69,7 +74,22 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <legend>Recent Runs</legend>
-
+          <div class="recentRunContainerKey">
+            <div>
+              <a href="" ng-click="selectSort('-date')">Date <i class="fa fa-sort"></i></a>
+            </div>
+            <div>
+              <a href="" ng-click="selectSort('-distance')">Distance <i class="fa fa-sort"></i></a>
+            </div>
+            <div>
+              <a href="" ng-click="selectSort('-time')">Time <i class="fa fa-sort"></i></a>
+            </div>
+            <div>
+              <a href="" ng-click="selectSort('-pace')">Pace <i class="fa fa-sort"></i></a>
+            </div>
+          </div>
+          <hr>
+          <list-run ng-repeat="el in runs | limitTo: 5 | orderBy: sortSelected" i="el"></list-run>
         </div>
       </div>
     </div>

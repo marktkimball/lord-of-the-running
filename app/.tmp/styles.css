@@ -70,12 +70,7 @@ map {
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
-    opacity: 1;
-    background-color: #AAB673;
-    border-color: #AAB673; }
-    .logInContainer .mainLoginButton:hover {
-      background-color: #969C6C;
-      border-color: #969C6C; }
+    opacity: 1; }
   .logInContainer .mainSignUpButton {
     width: 90%;
     margin: auto;
@@ -100,13 +95,19 @@ map {
     list-style: none; }
 
 .btn-stravaLink {
-  background-color: #FFF;
-  color: #FC4C02;
-  border: 1px solid #FC4C02;
+  background-color: #FC632B;
+  color: #FFF;
+  border: 1px solid #FC632B;
   border-radius: 2px; }
   .btn-stravaLink:hover {
-    background-color: #FC632B;
+    background-color: #FC4C02;
     color: #FFF; }
+
+.achievementsList {
+  list-style: none;
+  font-weight: bold; }
+  .achievementsList li {
+    margin-bottom: 5px; }
 
 .text-muted {
   color: #393834; }
@@ -150,19 +151,68 @@ map {
   -webkit-transition: 0.25s all;
           transition: 0.25s all; }
 
+legend {
+  border-bottom: 1px solid #444; }
+
+hr {
+  height: 1px;
+  border: 0px;
+  background-color: #444;
+  margin: 5px 0px 5px 0px; }
+
+.recentRunContainerKey {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0px 30px 0px 30px; }
+
+list-run a {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px 30px 10px 30px; }
+  list-run a:hover {
+    text-decoration: none; }
+
+.backgroundChange {
+  background-color: #FFFEFB;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+
+.individualRunLegend {
+  text-align: center;
+  font-size: 3em; }
+
+.individualRun {
+  display: inline-block;
+  width: 49%;
+  font-size: 2.5em; }
+  .individualRun ul {
+    list-style: none; }
+
 .panel {
   border-color: #cfd9D7;
   border-radius: 2px; }
 
 .panel-body {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: #E1DED7; }
 
 .panel-default > .panel-heading {
   font-size: 85%;
   font-weight: bold;
   color: #444;
   text-transform: uppercase;
-  background-color: #f6f6f6;
+  background-color: #E1DED7;
   border-color: #cfd9db; }
 
 .form-control {
@@ -188,7 +238,7 @@ map {
   display: inline-block;
   padding: 8px;
   margin: 0;
-  background-color: #fff; }
+  background-color: #E1DED7; }
 
 .has-feedback .form-control-feedback {
   top: 0;
@@ -255,17 +305,20 @@ map {
 .btn-primary:hover {
   background-color: #3367d6; }
 
-.btn-success {
-  background-color: #0f9d58; }
-
-.btn-success:hover {
-  background-color: #196c4a; }
+.btn-success, .btn-success[disabled] {
+  background-color: #AAB673;
+  border-color: #AAB673; }
+  .btn-success:hover, .btn-success[disabled]:hover {
+    background-color: #969C6C;
+    border-color: #969C6C; }
 
 .btn-danger {
-  background-color: #db4437; }
+  background-color: #B04C3B;
+  border-color: #B04C3B; }
 
 .btn-danger:hover {
-  background-color: #b04c3b; }
+  background-color: #82311F;
+  border-color: #82311F; }
 
 .btn-group-vertical .btn {
   margin-bottom: 10px; }

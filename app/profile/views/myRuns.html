@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <legend>All My Runs</legend>
+          <div class="recentRunContainerKey">
+            <div>
+              <a href="" ng-click="selectSort('-date')">Date <i class="fa fa-sort"></i></a>
+            </div>
+            <div>
+              <a href="" ng-click="selectSort('-distance')">Distance <i class="fa fa-sort"></i></a>
+            </div>
+            <div>
+              <a href="" ng-click="selectSort('-time')">Time <i class="fa fa-sort"></i></a>
+            </div>
+            <div>
+              <a href="" ng-click="selectSort('-pace')">Pace <i class="fa fa-sort"></i></a>
+            </div>
+          </div>
+          <hr>
+          <list-run ng-repeat="el in runs | orderBy: sortSelected" i="el"></list-run>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
