@@ -2,19 +2,19 @@
   <div class="col-sm-12">
     <div class="panel panel-default">
       <div class="panel-body">
-        <legend class="individualRunLegend">RUN TITLE{{el.title}}</legend>
+        <legend class="individualRunLegend">{{run.title}}</legend>
         <div class="individualRun">
           <ul>
-            <li>Date: {{el.date}}</li>
-            <li>Calories: {{el.calories}}</li>
-            <li>Elevation: {{el.elevation}}</li>
+            <li>Date: {{run.date | date}}</li>
+            <li>Location: {{run.location}}</li>
+            <li>Elevation: {{run.elevation | number : 0}} feet</li>
           </ul>
         </div>
         <div class="individualRun">
           <ul>
-            <li>Distance: {{el.distance}}</li>
-            <li>Time: {{el.time}}</li>
-            <li>Price: {{el.pace}}</li>
+            <li>Distance: {{run.distance | number : 2}} miles</li>
+            <li>Time: {{run.time | secondsToDateTime | date: 'HH:mm:ss'}}</li>
+            <li>Pace: {{run.pace | secondsToDateTime | date: 'mm:ss'}} / mile</li>
           </ul>
         </div>
       </div>

@@ -1,4 +1,4 @@
-<div class="container" ng-controller="ProfileController as ProfileCtrl">
+<div class="container">
   <div class="row">
     <div class="col-sm-7">
       <div class="panel panel-default">
@@ -11,17 +11,18 @@
                 <ul>
                   <li><h2>{{user.displayName}}</h2></li>
                   <li><label class="control-label">Name: <span class="pro5">{{user.name}}</span></label></li>
-                  <li><label class="control-label">Progress: <span class="pro5">{{user.progress}} %</span></label></li>
-                  <li><label class="control-label">Total Mileage: <span class="pro5">{{runs.length}}</span></label></li>
-                  <li><label class="control-label">Total Runs: <span class="pro5">{{runs.length}}</span></label></li>
+                  <li><label class="control-label">Progress: <span ng-if="user.strava" class="pro5">{{100 - ((achievements.untilMountDoom / 1800) * 100) | number : 2}} %</span><span ng-if="!user.strava" class="pro5">0.00%</span></label></li>
+                  <li ng-if="user.strava"><label class="control-label">Difficulty Level: <span class="pro5">{{user.difficulty}}</span></label></li>
+                  <li><label class="control-label">Total Mileage: <span ng-if="user.strava" class="pro5">{{user.totalMiles * 0.000621371 | number : 2}} miles</span><span ng-if="!user.strava" class="pro5">0.00</span></label></li>
+                  <li><label class="control-label">Total Runs: <span ng-if="user.strava" class="pro5">{{runs.length}}</span><span ng-if="!user.strava" class="pro5">0</span></label></li>
                   <li><label class="control-label">Email: <span class="pro5">{{user.email}}</span></label></li>
                   <li><label class="control-label">Location: <span class="pro5">{{user.location}}</span></label></li>
-                  <li><label class="control-label">Joined: <span class="pro5">{{user.joinDate}}</span></label></li>
+                  <li><label class="control-label">Joined: <span class="pro5">{{user.joinDate | date : mediumDate}}</span></label></li>
                 </ul>
               </div>
             </div>
           </form>
-          <button class="btn btn-warning" ng-click="ProfileCtrl.selectTab(true)">Edit My Profile</button>
+          <button class="btn btn-warning" ng-click="selectTab(true)">Edit My Profile</button>
           <button class="btn btn-stravaLink" ng-if="user.strava" ng-click="unlink('strava')">Unlink Strava Account</button>
           <button class="btn btn-stravaLink" ng-if="!user.strava" ng-click="link('strava')">Link Strava Account</button>
         </div>
@@ -31,21 +32,26 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <legend><i class="fa fa-trophy"></i> Achievements</legend>
-          <ul class="achievementsList">
+          <ul ng-if="user.strava && user.difficulty" class="achievementsList">
+            <li>Miles until Mount Doom: {{achievements.untilMountDoom | number : 2}} miles</li>
             <li>Last Landmark: The Dead Marshes</li>
-            <li>Next Landmark: The Black Gates</li>
+            <li>Next Landmark: The Black Gate</li>
             <li>Miles Until Next Landmark: 18.45 miles</li>
-            <li>Farthest Run: 20.2 miles</li>
-            <li>Fastest Pace: 6:54 / mile</li>
+            <li>Farthest Run: {{achievements.farthestRun | number : 2}} miles</li>
+            <li>Longest Run: {{achievements.longestRun | secondsToDateTime | date: 'HH:mm:ss'}}</li>
+            <li>Fastest Pace: {{achievements.fastestPace | secondsToDateTime| date: 'mm:ss'}} / mile</li>
             <li>Fastest Completion of Journey: 48 days (Hobbit)</li>
             <li>Highest Level Completed: Man</li>
           </ul>
+          <p ng-if="!user.strava">You must link your Strava acccount to view achievements</p>
+          <p ng-if="user.strava && !user.difficulty">You must select a difficulty level to view achievements</p>
+          <p ng-if="user.strava && !user.difficulty">Click <label class="control-label"><a href="#/begin"><i class="fa fa-map-signs"></i> Begin Quest</a></label> to select a difficulty level and start the journey</p>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="panel panel-default" ng-show="ProfileCtrl.tab">
+  <div class="panel panel-default" ng-show="tab">
     <div class="panel-body">
       <legend><i class="ion-clipboard"></i> Update Profile</legend>
       <div>
@@ -62,9 +68,9 @@
             <label class="control-label"><i class="fa fa-map-marker"></i> Location: </label>
             <input type="text" class="form-control" ng-model="user.location" />
           </div>
-          <button class="btn btn-lg btn-success" ng-click="ProfileCtrl.selectTab(false)">Update Information</button>
+          <button class="btn btn-lg btn-success" ng-click="selectTab(false)">Update Information</button>
           </form>
-        <button class="btn btn-lg btn-danger cancelProfileUpdate" ng-click="ProfileCtrl.selectTab(false)">Cancel</button>
+        <button class="btn btn-lg btn-danger cancelProfileUpdate" ng-click="selectTab(false)">Cancel</button>
       </div>
     </div>
   </div>
@@ -72,7 +78,7 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="panel panel-default">
-        <div class="panel-body">
+        <div ng-if="user.strava" class="panel-body">
           <legend>Recent Runs</legend>
           <div class="recentRunContainerKey">
             <div>
@@ -89,7 +95,11 @@
             </div>
           </div>
           <hr>
-          <list-run ng-repeat="el in runs | limitTo: 5 | orderBy: sortSelected" i="el"></list-run>
+          <list-run ng-repeat="el in runs | limitTo: -5 | orderBy: sortSelected" i="el"></list-run>
+        </div>
+        <div ng-if="!user.strava" class="panel-body">
+          <legend>Recent Runs</legend>
+          <p>You must link your Strava acccount to view recent runs</p>
         </div>
       </div>
     </div>

@@ -32,7 +32,8 @@ router.route('/me')
       user.difficulty = req.body.difficulty || user.difficulty;
       user.achievements = req.body.achievements || user.achievements;
       user.joinDate = req.body.joinDate || user.joinDate;
-      user.progress = req.body.progress || user.progress;
+      user.lastVisitDate = req.body.lastVisitDate || user.lastVisitDate;
+      user.totalMiles = req.body.totalMiles || user.totalMiles;
       user.save(function(err) {
         res.status(200).end();
       });

@@ -16,6 +16,13 @@ h1, h2, h3, h4, h5, h6 {
 a {
   color: #393834; }
 
+/*Remove this when back online*/
+.mapContainer img {
+  display: block;
+  width: 98%;
+  margin: auto; }
+
+/*End remove section*/
 #middle-earth-video {
   position: fixed;
   top: 50%;
@@ -28,6 +35,12 @@ a {
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
   background-size: cover; }
+
+.tagline {
+  font-style: italic;
+  font-family: 'Cinzel Decorative', cursive; }
+  .tagline li {
+    padding: 25px 15px 5px 15px; }
 
 map {
   height: 800px;
@@ -42,6 +55,8 @@ map {
 .logInContainer {
   position: absolute;
   height: 100%;
+  top: 0px;
+  padding-top: 200px;
   text-align: center;
   color: #E1DED7;
   background: -webkit-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
@@ -91,16 +106,19 @@ map {
 
 .profileInfoText {
   display: inline-block; }
+  .profileInfoText h2 {
+    margin-top: 0; }
   .profileInfoText ul {
     list-style: none; }
 
 .btn-stravaLink {
-  background-color: #FC632B;
+  background-color: #FC4C02;
   color: #FFF;
-  border: 1px solid #FC632B;
+  border: 1px solid #FC4C02;
   border-radius: 2px; }
   .btn-stravaLink:hover {
-    background-color: #FC4C02;
+    background-color: #C93D02;
+    border-color: #C93D02;
     color: #FFF; }
 
 .achievementsList {
@@ -165,24 +183,111 @@ hr {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin: 0px 30px 0px 30px; }
+  .recentRunContainerKey div {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1; }
 
 list-run a {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 10px 30px 10px 30px; }
   list-run a:hover {
     text-decoration: none; }
+  list-run a div {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1; }
+
+.beginQuest {
+  float: none;
+  margin: auto; }
+  .beginQuest h2 {
+    text-align: center; }
+  .beginQuest a {
+    -webkit-transition: all 0.1s ease-in-out;
+            transition: all 0.1s ease-in-out;
+    text-decoration: none; }
+    .beginQuest a:hover {
+      color: #428bca; }
+  .beginQuest .levelContainer {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+  .beginQuest .levelInfoContainer {
+    margin: 25px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 10px;
+    margin-top: 25px;
+    border: 3px #393834 solid;
+    -webkit-transition: all 0.25s ease-in-out;
+            transition: all 0.25s ease-in-out; }
+    .beginQuest .levelInfoContainer:hover {
+      background-color: #FFFEFB;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+    .beginQuest .levelInfoContainer .levelInfo {
+      -webkit-align-self: center;
+          -ms-flex-item-align: center;
+              align-self: center;
+      padding: 10px; }
+      .beginQuest .levelInfoContainer .levelInfo img {
+        height: 150px;
+        width: auto; }
+    .beginQuest .levelInfoContainer .elf, .beginQuest .levelInfoContainer .man, .beginQuest .levelInfoContainer .dwarf, .beginQuest .levelInfoContainer .hobbit {
+      background-image: url(../../assets/the-lord-of-the-rings-vectors-the-fellowship-of-the-ring-nine-companions.png);
+      background-repeat: no-repeat;
+      margin: auto; }
+    .beginQuest .levelInfoContainer .wizard {
+      background-image: url(../../assets/the-hobbit-vectors-main-characters.png);
+      background-repeat: no-repeat;
+      margin: auto;
+      background-position: -895px -280px;
+      width: 130px;
+      height: 130px; }
+    .beginQuest .levelInfoContainer .elf {
+      background-position: -895px -280px;
+      width: 130px;
+      height: 130px; }
+    .beginQuest .levelInfoContainer .man {
+      background-position: -725px -280px;
+      width: 130px;
+      height: 130px; }
+    .beginQuest .levelInfoContainer .dwarf {
+      background-position: -280px -505px;
+      width: 130px;
+      height: 130px; }
+    .beginQuest .levelInfoContainer .hobbit {
+      background-position: -820px -510px;
+      width: 130px;
+      height: 130px; }
 
 .backgroundChange {
   background-color: #FFFEFB;

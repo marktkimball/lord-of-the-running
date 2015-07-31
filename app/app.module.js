@@ -21,7 +21,16 @@ angular.module('MyApp', [
     .otherwise({
       redirectTo: '/404'
     });
+})
+
+.filter('secondsToDateTime', function() {
+  return function(seconds) {
+    var d = new Date(0,0,0,0,0,0,0);
+    d.setSeconds(seconds);
+    return d;
+  };
 });
+
 angular
     .module('lodash', [])
     .factory('_', function($window){

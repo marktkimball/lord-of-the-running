@@ -30,6 +30,14 @@ a {
   color: $main-font-color;
 }
 
+/*Remove this when back online*/
+.mapContainer img{
+  display:block;
+  width:98%;
+  margin:auto;
+}
+/*End remove section*/
+
 #middle-earth-video{
   position: fixed;
   top: 50%;
@@ -42,6 +50,14 @@ a {
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
   background-size: cover;
+}
+
+.tagline{
+  font-style: italic;
+  font-family: 'Cinzel Decorative', cursive;
+  li{
+    padding: 25px 15px 5px 15px;
+  }
 }
 
 map{
@@ -59,6 +75,8 @@ map{
 .logInContainer{
   position: absolute;
   height:100%;
+  top: 0px;
+  padding-top: 200px;
   text-align: center;
   color: $sign-in-color;
   background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5));
@@ -118,18 +136,22 @@ map{
 
 .profileInfoText{
   display: inline-block;
+  h2{
+    margin-top: 0;
+  }
   ul{
     list-style: none;
   }
 }
 
 .btn-stravaLink{
-  background-color: #FC632B;
+  background-color: $stravaOrange;
   color: #FFF;
-  border: 1px solid #FC632B;
+  border: 1px solid $stravaOrange;
   border-radius: 2px;
   &:hover{
-    background-color: $stravaOrange;
+    background-color: #C93D02;
+    border-color: #C93D02;
     color: #FFF;
   }
 }
@@ -207,16 +229,98 @@ hr{
 
 .recentRunContainerKey{
   display:flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0px 30px 0px 30px;
+  div{
+    flex-grow: 1;
+  }
 }
 
 list-run a{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 10px 30px 10px 30px;
     &:hover{
     text-decoration: none;
+  }
+  div{
+    flex-grow: 1;
+  }
+}
+
+.beginQuest{
+  float: none;
+  margin: auto;
+  h2{
+    text-align: center;
+  }
+  a{
+    transition: all 0.1s ease-in-out;
+    text-decoration: none;
+    &:hover{
+      color: #428bca;
+    }
+  }
+  .levelContainer{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .levelInfoContainer{
+    margin:25px;
+    display:flex;
+    justify-content: center;
+    padding: 10px;
+    margin-top: 25px;
+    border: 3px $main-font-color solid;
+    transition: all 0.25s ease-in-out;
+    &:hover{
+      background-color: #FFFEFB;
+      box-shadow: $materialDesignLevelTwoShadow;
+    }
+    .levelInfo{
+      align-self: center;
+      padding:10px;
+      img{
+        height:150px;
+        width:auto;
+      }
+    }
+    .elf, .man, .dwarf, .hobbit{
+      background-image: url(../../assets/the-lord-of-the-rings-vectors-the-fellowship-of-the-ring-nine-companions.png);
+      background-repeat: no-repeat;
+      margin: auto;
+      // border: 1px solid black;
+    }
+    .wizard{
+      background-image: url(../../assets/the-hobbit-vectors-main-characters.png);
+      background-repeat: no-repeat;
+      margin: auto;
+      background-position: -895px -280px;
+      width: 130px;
+      height: 130px;
+      // border: 1px solid black;
+    }
+    .elf{
+      background-position: -895px -280px;
+      width: 130px;
+      height: 130px;
+    }
+    .man{
+      background-position: -725px -280px;
+      width: 130px;
+      height: 130px;
+    }
+    .dwarf{
+      background-position: -280px -505px;
+      width: 130px;
+      height: 130px;
+    }
+    .hobbit{
+      background-position: -820px -510px;
+      width: 130px;
+      height: 130px;
+    }
   }
 }
 

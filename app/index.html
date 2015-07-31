@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Lord of the Running</title>
   <link href='http://fonts.googleapis.com/css?family=Cinzel+Decorative:700' rel='stylesheet' type='text/css'>
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
   <link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
   <link href="//cdn.jsdelivr.net/animatecss/3.2.0/animate.css" rel="stylesheet">
@@ -24,7 +24,6 @@
 
 
   <ng-include src="'home/views/navbar.html'"></ng-include>
-  <!-- <ng-include src="'map/mapView.html'"></ng-include> -->
 
   <div ng-view class="fadeZoom"></div>
 
@@ -65,9 +64,11 @@
           return null;
         }
         var bound = Math.pow(2, zoom);
+        if(normalizedCoord.x >= 0 && normalizedCoord.y <= 12){
         return 'assets/middle_earth_map' +
             '/' + zoom + '/' + normalizedCoord.x + '/' +
             normalizedCoord.y + '.png';
+          }
     },
     tileSize: new google.maps.Size(256, 256),
     maxZoom: 4,
@@ -89,19 +90,19 @@
   <script src="auth/auth.module.js"></script>
   <script src="auth/directives/passwordStrength.js"></script>
   <script src="auth/directives/passwordMatch.js"></script>
-  <script src="map/map.module.js"></script>
-  <script src="map/map.service.js"></script>
-  <script src="map/map.controller.js"></script>
   <script src="profile/profile.module.js"></script>
   <script src="profile/profile.controller.js"></script>
   <script src="profile/profile.accountService.js"></script>
+  <script src="map/map.module.js"></script>
+  <script src="map/map.service.js"></script>
+  <script src="map/map.controller.js"></script>
   <script src="app.module.js"></script>
   <script src="home/navbar.js"></script>
+  <script src="directives/listRun.directive.js"></script>
   <script src="controllers/navbar.js"></script>
   <script src="auth/auth.signup.js"></script>
   <script src="auth/auth.logout.js"></script>
   <script src="auth/auth.login.js"></script>
-  <script src="directives/listRun.directive.js"></script>
   <!-- endinject -->
 </body>
 

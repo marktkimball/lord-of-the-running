@@ -1,13 +1,18 @@
 angular.module('profile')
-  .controller('ProfileController', function($scope, $auth, $alert, Account) {
-
+  .controller('ProfileController', function($scope, $auth, $alert, Account, $routeParams, $rootScope) {
     /**
      * Get user's profile information.
      */
+   $scope.achievements = {'farthestRun' : 0, 'fastestPace' : undefined, 'longestRun' : '', 'untilMountDoom' : 1800};
+
     $scope.getProfile = function() {
       Account.getProfile()
         .success(function(data) {
           $scope.user = data;
+          $scope.runs = data.runs;
+          $rootScope.user = data;
+          $rootScope.runData = data.runs;
+          $scope.achievementCheck();
         })
         .error(function(error) {
           $alert({
@@ -31,8 +36,10 @@ angular.module('profile')
     $scope.updateProfile = function() {
       Account.updateProfile({
         displayName: $scope.user.displayName,
-        email: $scope.user.email
+        email: $scope.user.email,
+        location: $scope.user.location
       }).then(function() {
+        console.log($scope.user);
         $alert({
           content: 'Profile has been updated',
           animation: 'fadeZoomFadeDown',
@@ -94,91 +101,47 @@ angular.module('profile')
         });
     };
 
-    $scope.getProfile();
+    $scope.updateDifficulty = function(newDifficulty){
+      Account.updateProfile({
+        difficulty: newDifficulty
+      });
+    };
 
-    this.tab = false;
+    $scope.tab = false;
 
-    this.selectTab = function(value){
+    $scope.selectTab = function(value){
       this.tab = value;
     };
 
     $scope.sortSelected = "-date";
 
-     $scope.selectSort = function(newSorter){
-       $scope.sortSelected = newSorter;
-     };
+    $scope.selectSort = function(newSorter){
+      $scope.sortSelected = newSorter;
+    };
 
-    $scope.runs = [
-      {
-        id: '1',
-        distance: 4.0,
-        time: "32:57",
-        pace: "8:04",
-        date: "07/25/2015"
-      },
-      {
-        id: '2',
-        distance: 5.0,
-        time: "40:57",
-        pace: "8:04",
-        date: "07/22/2015"
-      },
-      {
-        id: '3',
-        distance: 10.0,
-        time: "01:15:57",
-        pace: "10:04",
-        date: "07/21/2015"
-      },
-      {
-        id: '4',
-        distance: 2.0,
-        time: "15:00",
-        pace: "7:30",
-        date: "07/26/2015"
-      },
-      {
-        id: '5',
-        distance: 4.4,
-        time: "33:57",
-        pace: "8:05",
-        date: "07/20/2015"
-      },
-      {
-        id: '6',
-        distance: 5.5,
-        time: "45:35",
-        pace: "9:00",
-        date: "06/25/2015"
-      },
-      {
-        id: '7',
-        distance: 1.0,
-        time: "6:40",
-        pace: "6:40",
-        date: "01/22/2015"
-      },
-      {
-        id: '8',
-        distance: 4.0,
-        time: "33:57",
-        pace: "8:10",
-        date: "02/25/2014"
-      },
-      {
-        id: '9',
-        distance: 4.5,
-        time: "33:17",
-        pace: "7:04",
-        date: "07/25/2014"
-      },
-      {
-        id: '10',
-        distance: 20.45,
-        time: "02:10:31",
-        pace: "8:04",
-        date: "07/25/2016"
+    if($routeParams.id){
+      for(var i = 0; i < $rootScope.runData.length; i++){
+        if($rootScope.runData[i].id == $routeParams.id){
+          $scope.run = $rootScope.runData[i];
+        }
       }
-    ];
+    };
+
+    $scope.achievementCheck = function(){
+      for(var j = 0; j < $rootScope.runData.length; j++){
+        if($scope.achievements.farthestRun < $rootScope.runData[j].distance){
+          $scope.achievements.farthestRun = $rootScope.runData[j].distance;
+        };
+        if($scope.achievements.fastestPace > $rootScope.runData[j].pace || $scope.achievements.fastestPace === undefined){
+          $scope.achievements.fastestPace = $rootScope.runData[j].pace;
+        };
+        if($scope.achievements.longestRun < $rootScope.runData[j].time){
+          $scope.achievements.longestRun = $rootScope.runData[j].time;
+        };
+      };
+      $scope.achievements.untilMountDoom = (1800 - ($rootScope.user.totalMiles * 0.000621371));
+    };
+
+    $scope.getProfile();
 
   });

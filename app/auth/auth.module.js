@@ -31,9 +31,7 @@ angular.module('auth', ['ngMessages', 'ngRoute', 'mgcrea.ngStrap', 'satellizer']
       });
 
     $authProvider.strava({
-      clientId: '7062',
-      url: '/auth/strava'
-
+      clientId: '7062'
     });
 
     $authProvider.facebook({

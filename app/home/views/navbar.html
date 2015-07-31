@@ -1,16 +1,21 @@
 <div ng-controller="NavbarCtrl" class="navbar navbar-default navbar-static-top">
   <div class="navbar-header">
-    <a class="navbar-brand" href="/#/">Lord of the Running</a>
+    <a ng-if="isAuthenticated()" class="navbar-brand" href="/#/">Lord of the Running</a>
+    <a ng-if="!isAuthenticated()" class="navbar-brand" href="/#/login">Lord of the Running</a>
   </div>
-  <ul class="nav navbar-nav">
+  <ul ng-if="isAuthenticated()" class="nav navbar-nav">
     <li><a href="/#/"><i class="ion-map"></i> Map of Middle Earth</a></li>
+    <li ng-if="!user.difficulty"><a href="/#/begin"><i class="fa fa-map-signs"></i> Begin Quest</a></li>
+  </ul>
+  <ul class="tagline nav navbar-nav">
+    <li ng-if="!isAuthenticated()">"One does not simply walk into Mordor"</li>
   </ul>
   <ul ng-if="!isAuthenticated()" class="nav navbar-nav pull-right">
     <li><a href="/#/login"><i class="fa fa-sign-in"></i> Login / Sign up</a></li>
   </ul>
   <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
     <li><a href="/#/profile"><i class="fa fa-user"></i> Profile</a></li>
-    <li><a href="/#/myRuns"><i class="fa fa-list"></i> My Runs</a></li>
+    <li ng-if="user.strava"><a href="/#/myRuns"><i class="fa fa-list"></i> My Runs</a></li>
     <li><a href="/#/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
   </ul>
 </div>

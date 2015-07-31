@@ -1,5 +1,5 @@
 angular.module('auth')
-  .controller('LogoutCtrl', function($auth, $alert) {
+  .controller('LogoutCtrl', function($auth, $alert, $window) {
     if (!$auth.isAuthenticated()) {
       return;
     }
@@ -12,4 +12,6 @@ angular.module('auth')
           duration: 3
         });
       });
+
+    $window.onbeforeunload = $auth.logout();
   });

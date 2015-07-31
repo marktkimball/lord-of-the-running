@@ -41,7 +41,37 @@ router.route('/login')
         if (!isMatch) {
           return res.status(401).send({ message: 'Wrong email and/or password' });
         }
-        res.send({ token: createToken(user) });
+        if(user.strava){
+          strava.athlete.listActivities({id : user.strava, access_token : user.stravaToken, after: Math.floor(user.lastVisitDate / 1000)}, function(err, payload){
+            console.log("Err: " , err);
+            user.lastVisitDate = moment().valueOf();
+            var runData = payload;
+            // user.runs = [];
+            if(runData.length > 0){
+              for(var i = 0; i < runData.length; i++){
+                user.totalMiles += runData[i].distance;
+                if(runData[i].type === 'Run'){
+                  var run = {
+                    id: runData[i].id,
+                    date: runData[i].start_date,
+                    distance: runData[i].distance * 0.000621371,
+                    time: runData[i].elapsed_time,
+                    pace: runData[i].elapsed_time / (runData[i].distance * 0.000621371),
+                    title: runData[i].name,
+                    elevation: runData[i].total_elevation_gain * 3.28084,
+                    location: runData[i].location_city
+                  };
+                  user.runs.push(run);
+                };
+              };
+            };
+            user.save(function(err) {
+              res.send({token: createToken(user), user: user});
+            });
+          });
+        } else{
+          res.send({ token: createToken(user) });
+        }
       });
     });
   });
@@ -63,6 +93,9 @@ router.route('/login')
         displayName: req.body.displayName,
         email: req.body.email,
         password: req.body.password,
+        joinDate: moment().valueOf(),
+        totalMiles : 0,
+        name: ""
       });
       user.save(function() {
         res.send({ token: createToken(user) });
@@ -75,22 +108,58 @@ router.route('/login')
  | Login in Strava
  |--------------------------------------------------------------------------
  */
-//https://www.strava.com/oauth/authorize?client_id=7062&response_type=code&redirect_uri=http://localhost:3000/token_exchange&scope=public&approval_prompt=force
  router.route('/strava')
   .post(function(req, res){
-    // var accessUrl = 'https://www.strava.com/oauth/authorize';
-    var params = {
-      client_id: req.body.clientId,
-      redirect_uri: req.body.redirectUri,
-      client_secret: config.STRAVA_SECRET,
-      response_type: 'code'
-    };
     var url = strava.oauth.getRequestAccessURL({scope: "public"});
-    console.log("Strava url: ", url);
-    request.get({url: url, qs: params}, function(err, res, data){
-      // console.log('res: ', res, 'data: ', data);
+    request.post({url: url}, function(err, httpResponse, body){
+      var code = req.param('code');
+
+      strava.oauth.getToken(code, function(err, athlete) {
+        // Step 3a. Link user accounts.
+        if (req.headers.authorization) {
+          User.findOne({ strava: athlete.athlete.id }, function(err, existingUser) {
+            if (existingUser) {
+              return res.status(409).send({ message: 'There is already a Strava account that belongs to you' });
+            }
+            var token = req.headers.authorization.split(' ')[1];
+            var payload = jwt.decode(token, config.TOKEN_SECRET);
+            User.findById(payload.sub, function(err, user) {
+              if (!user) {
+                return res.status(400).send({ message: 'User not found' });
+              }
+              user.strava = athlete.athlete.id;
+              user.stravaToken = athlete.access_token;
+              user.picture = user.picture || athlete.athlete.profile.replace('sz=50', 'sz=200');
+              user.displayName = user.displayName;
+              user.name = athlete.athlete.firstname.concat(" ").concat(athlete.athlete.lastname);
+              user.save(function() {
+                var token = createToken(user);
+                res.send({ token: token });
+              });
+            });
+          });
+        } else {
+          // Step 3b. Create a new user account or return an existing one.
+          User.findOne({ strava: athlete.athlete.id }, function(err, existingUser) {
+            if (existingUser) {
+              return res.send({ token: createToken(existingUser) });
+            }
+            var user = new User();
+            user.strava = athlete.athlete.id;
+            user.stravaToken = athlete.access_token;
+            user.picture = athlete.athlete.profile.replace('sz=50', 'sz=200');
+            user.displayName = user.displayName || athlete.athlete.firstname.concat(athlete.athlete.lastname);
+            user.name = athlete.athlete.firstname.concat(" ").concat(athlete.athlete.lastname);
+            user.save(function(err) {
+              var token = createToken(user);
+              res.send({ token: token });
+            });
+          });
+        }
+
+        });
     })
-  })
+  });
 
 /*
  |--------------------------------------------------------------------------

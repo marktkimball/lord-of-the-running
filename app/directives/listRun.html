@@ -1,14 +1,14 @@
-<a href="/#/individualRun">
+<a href="/#/individualRun/{{i.id}}">
   <div>
     {{i.date | date}}
   </div>
   <div>
-    {{i.distance}}
+    {{i.distance | number : 2}}
   </div>
   <div>
-    {{i.time | date : 'HH:mm:ss'}}
+    {{i.time | secondsToDateTime | date: 'HH:mm:ss'}}
   </div>
   <div>
-    {{i.pace | date : 'mm:ss'}}
+    {{i.pace | secondsToDateTime| date: 'mm:ss'}}
   </div>
 </a>
