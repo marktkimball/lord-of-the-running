@@ -11,6 +11,7 @@ angular.module('auth')
           type: 'material',
           duration: 3
         });
+        $window.location.href = '/#/login';
       });
 
     $window.onbeforeunload = $auth.logout();

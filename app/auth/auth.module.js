@@ -27,7 +27,7 @@ angular.module('auth', ['ngMessages', 'ngRoute', 'mgcrea.ngStrap', 'satellizer']
         }
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/login'
       });
 
     $authProvider.strava({

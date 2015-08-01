@@ -13,7 +13,8 @@
                   <li><label class="control-label">Name: <span class="pro5">{{user.name}}</span></label></li>
                   <li><label class="control-label">Progress: <span ng-if="user.strava" class="pro5">{{100 - ((achievements.untilMountDoom / 1800) * 100) | number : 2}} %</span><span ng-if="!user.strava" class="pro5">0.00%</span></label></li>
                   <li ng-if="user.strava"><label class="control-label">Difficulty Level: <span class="pro5">{{user.difficulty}}</span></label></li>
-                  <li><label class="control-label">Total Mileage: <span ng-if="user.strava" class="pro5">{{user.totalMiles * 0.000621371 | number : 2}} miles</span><span ng-if="!user.strava" class="pro5">0.00</span></label></li>
+                  <li><label class="control-label">Total Middle Earth Mileage: <span ng-if="user.strava" class="pro5">{{totalMEMiles | number : 2}} miles</span><span ng-if="!user.strava" class="pro5">0.00</span></label></li>
+                  <li><label class="control-label">Total Mileage: <span ng-if="user.strava" class="pro5">{{totalMiles | number : 2}} miles</span><span ng-if="!user.strava" class="pro5">0.00</span></label></li>
                   <li><label class="control-label">Total Runs: <span ng-if="user.strava" class="pro5">{{runs.length}}</span><span ng-if="!user.strava" class="pro5">0</span></label></li>
                   <li><label class="control-label">Email: <span class="pro5">{{user.email}}</span></label></li>
                   <li><label class="control-label">Location: <span class="pro5">{{user.location}}</span></label></li>
@@ -34,9 +35,9 @@
           <legend><i class="fa fa-trophy"></i> Achievements</legend>
           <ul ng-if="user.strava && user.difficulty" class="achievementsList">
             <li>Miles until Mount Doom: {{achievements.untilMountDoom | number : 2}} miles</li>
-            <li>Last Landmark: The Dead Marshes</li>
-            <li>Next Landmark: The Black Gate</li>
-            <li>Miles Until Next Landmark: 18.45 miles</li>
+            <li>Last Landmark: {{currentPositionInfo.landmark}}</li>
+            <li>Next Landmark: {{currentPositionInfo.nextLandmark}}</li>
+            <li>Miles Until Next Landmark: {{currentPositionInfo.nextLandmarkMiles - totalMEMiles | number : 2}} miles</li>
             <li>Farthest Run: {{achievements.farthestRun | number : 2}} miles</li>
             <li>Longest Run: {{achievements.longestRun | secondsToDateTime | date: 'HH:mm:ss'}}</li>
             <li>Fastest Pace: {{achievements.fastestPace | secondsToDateTime| date: 'mm:ss'}} / mile</li>
@@ -81,17 +82,41 @@
         <div ng-if="user.strava" class="panel-body">
           <legend>Recent Runs</legend>
           <div class="recentRunContainerKey">
-            <div>
+            <div ng-if="sortSelected !== '-date' && sortSelected !== 'date'">
               <a href="" ng-click="selectSort('-date')">Date <i class="fa fa-sort"></i></a>
             </div>
-            <div>
+            <div ng-if="sortSelected === '-date'">
+              <a href="" ng-click="selectSort('date')">Date <i class="fa fa-sort-desc"></i></a>
+            </div>
+            <div ng-if="sortSelected === 'date'">
+              <a href="" ng-click="selectSort('-date')">Date <i class="fa fa-sort-asc"></i></a>
+            </div>
+            <div ng-if="sortSelected !== '-distance' && sortSelected !== 'distance'">
               <a href="" ng-click="selectSort('-distance')">Distance <i class="fa fa-sort"></i></a>
             </div>
-            <div>
+            <div ng-if="sortSelected === '-distance'">
+              <a href="" ng-click="selectSort('distance')">Distance <i class="fa fa-sort-desc"></i></a>
+            </div>
+            <div ng-if="sortSelected === 'distance'">
+              <a href="" ng-click="selectSort('-distance')">Distance <i class="fa fa-sort-asc"></i></a>
+            </div>
+            <div ng-if="sortSelected !== '-time' && sortSelected !== 'time'">
               <a href="" ng-click="selectSort('-time')">Time <i class="fa fa-sort"></i></a>
             </div>
-            <div>
+            <div ng-if="sortSelected === '-time'">
+              <a href="" ng-click="selectSort('time')">Time <i class="fa fa-sort-desc"></i></a>
+            </div>
+            <div ng-if="sortSelected === 'time'">
+              <a href="" ng-click="selectSort('-time')">Time <i class="fa fa-sort-asc"></i></a>
+            </div>
+            <div ng-if="sortSelected !== '-pace' && sortSelected !== 'pace'">
               <a href="" ng-click="selectSort('-pace')">Pace <i class="fa fa-sort"></i></a>
+            </div>
+            <div ng-if="sortSelected === '-pace'">
+              <a href="" ng-click="selectSort('pace')">Pace <i class="fa fa-sort-desc"></i></a>
+            </div>
+            <div ng-if="sortSelected === 'pace'">
+              <a href="" ng-click="selectSort('-pace')">Pace <i class="fa fa-sort-asc"></i></a>
             </div>
           </div>
           <hr>

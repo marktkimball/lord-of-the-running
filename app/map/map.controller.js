@@ -11,20 +11,21 @@ $scope.map = {
   }
 }
 
-$scope.click = function(event){
-  console.log(event.latLng.G + ', ' + event.latLng.K);
-}
+// $scope.click = function(event){
+//   console.log(event.latLng.G + ', ' + event.latLng.K);
+// }
+
 
 var frodoTotalJourneyCoordinates = [
-  [76.3518964311259, -107.490234375], //SHIRE, 0%
-  [75.82365950624266, -105.97824096679688],
+  [76.3518964311259, -107.490234375], //HOBBITON, 0%
+  [75.82365950624266, -105.97824096679688], //THE SHIRE
   [75.40885422846455, -105.18722534179688],
   [75.05035357407698, -104.83566284179688],
   [75.14077784070429, -101.84738159179688], //WOODY END
   [75.88809074612949, -99.56222534179688], //CRICKHOLLOW
   [75.71563324165896, -98.94699096679688], //OLD FOREST
   [75.80211845876494, -97.27706909179688],
-  [75.80211845876494, -94.99191284179688],
+  [75.80211845876494, -94.99191284179688], //Tom Bombadil's House
   [75.6504309974655, -92.79464721679688],
   [75.45307133006602, -91.65206909179688], //BARROW DOWNS
   [75.342281944273, -89.54269409179688],
@@ -34,7 +35,7 @@ var frodoTotalJourneyCoordinates = [
   [76.86081041605962, -86.81808471679688],
   [77.17668402976393, -84.97238159179688],
   [76.98014914976217, -83.30245971679688],
-  [76.82079252543741, -81.28097534179688],
+  [76.82079252543741, -81.28097534179688], //MIDGEWATER MARSHES
   [76.6801567168, -80.0157728990016],
   [76.551678710, -78.913578220],
   [76.43460358351302, -77.32589721679688],
@@ -101,7 +102,7 @@ var frodoTotalJourneyCoordinates = [
   [69.99053495947655, -46.036834716796875],
   [70.08056215839737, -44.454803466796875],
   [69.96043926902487, -42.960662841796875], //GANDOLF FALLS FROM BRIDGE WITH BALROG
-  [69.56522590149099, -41.466522216796875], //ENTER DRIMRILL DALE, GAZE MIRRORMERE
+  [69.56522590149099, -41.466522216796875], //ENTER DIMRILL DALE, GAZE MIRRORMERE
   [69.03714171275197, -39.884490966796875],
   [68.56038368664157, -39.005584716796875],
   [67.941650035336, -38.654022216796875], //REACH RIVER NIMRODEL
@@ -198,8 +199,9 @@ var frodoTotalJourneyCoordinates = [
   [35.60371874069731, 19.51171875] //RING IN MT DOOM, 100%
 ];
 
-var currentJourneyPosition = Math.floor(($rootScope.user.totalMiles  * 0.000621371 / 1800) * frodoTotalJourneyCoordinates.length);
+var currentJourneyPosition = Math.floor(($rootScope.totalMEMiles / 1800) * frodoTotalJourneyCoordinates.length);
 $scope.frodoJourneyCoordinates = frodoTotalJourneyCoordinates.slice(0, currentJourneyPosition);
+// $scope.frodoJourneyCoordinates = frodoTotalJourneyCoordinates;
 
 //5.04257 ME miles to 1 mile ratio to get accurate distance of 1800 miles, each point roughly 10 miles
 
