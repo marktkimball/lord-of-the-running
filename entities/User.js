@@ -27,6 +27,7 @@ var userSchema = new mongoose.Schema({
   joinDate: String,
   lastVisitDate: String,
   startQuestDate: String,
+  currentPosition: String,
   strava: String,
   stravaToken: String,
   facebook: String,

@@ -48,9 +48,9 @@ router.route('/login')
           var lastRunPosition = user.runs.length - 1;
           var lastRunDate = moment(user.runs[lastRunPosition].date).valueOf();
         }
-
+        
         if(user.strava){
-          strava.athlete.listActivities({id : user.strava, access_token : user.stravaToken}, function(err, payload){
+          strava.athlete.listActivities({id : user.strava, access_token : user.stravaToken, after : Math.floor(lastRunDate / 1000)}, function(err, payload){
             console.log("Err: " , err);
             user.lastVisitDate = moment().valueOf();
             var runData = payload;
@@ -111,7 +111,8 @@ router.route('/login')
           highestCompletionDifficulty: null,
           timesCompleted: 0
         },
-        name: ""
+        name: "",
+        currentPosition: ""
       });
       user.save(function() {
         res.send({ token: createToken(user) });
@@ -148,6 +149,7 @@ router.route('/login')
               user.picture = user.picture || athlete.athlete.profile.replace('sz=50', 'sz=200');
               user.displayName = user.displayName;
               user.name = athlete.athlete.firstname.concat(" ").concat(athlete.athlete.lastname);
+              user.location = athlete.athlete.city.concat(", ").concat(athlete.athlete.state);
               user.save(function() {
                 var token = createToken(user);
                 res.send({ token: token });

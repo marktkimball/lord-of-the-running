@@ -35,6 +35,7 @@ router.route('/me')
       user.joinDate = req.body.joinDate || user.joinDate;
       user.lastVisitDate = req.body.lastVisitDate || user.lastVisitDate;
       user.totalMiles = req.body.totalMiles || user.totalMiles;
+      user.currentPosition = req.body.currentPosition || user.currentPosition;
       console.log('acheivements: ', user.achievements);
       user.save(function(err) {
         res.status(200).end();
