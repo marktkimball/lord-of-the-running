@@ -11,8 +11,18 @@ var userSchema = new mongoose.Schema({
   picture: String,
   location: String,
   runs: Array,
-  difficulty: String,
-  achievements: Array,
+  currentJourney: {
+    totalMiles: Number,
+    runs: Array,
+    startDate: Number,
+    difficulty: String
+  },
+  achievements: {
+    fastestCompletionTime: Number,
+    fastestCompletionDifficulty: String,
+    highestCompletionDifficulty: String,
+    timesCompleted: Number
+  },
   totalMiles: Number,
   joinDate: String,
   lastVisitDate: String,

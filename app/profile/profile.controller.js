@@ -1,5 +1,5 @@
 angular.module('profile')
-  .controller('ProfileController', function($scope, $auth, $alert, Account, $routeParams, $rootScope) {
+  .controller('ProfileController', function($scope, $auth, $alert, Account, $routeParams, $rootScope, moment) {
     /**
      * Get user's profile information.
      */
@@ -8,29 +8,33 @@ angular.module('profile')
     $scope.getProfile = function() {
       Account.getProfile()
         .success(function(data) {
+          console.log('profile data: ',data);
           $scope.user = data;
           $scope.runs = data.runs;
           $rootScope.user = data;
           $rootScope.runData = data.runs;
+          $scope.fastestCompletionTime = moment.duration(data.achievements.fastestCompletionTime).humanize();
 
           //Set difficultyMultipler
           var difficultyMultipler;
-          if(data.difficulty === "Wizard"){
+          if(data.currentJourney.difficulty === "Wizard"){
             difficultyMultipler = 10;
-          }else if(data.difficulty === "Elf"){
+          }else if(data.currentJourney.difficulty === "Elf"){
             difficultyMultipler = 5;
-          }else if(data.difficulty === "Man"){
+          }else if(data.currentJourney.difficulty === "Man"){
             difficultyMultipler = 3;
-          }else if(data.difficulty === "Dwarf"){
+          }else if(data.currentJourney.difficulty === "Dwarf"){
             difficultyMultipler = 2;
           }else{
             difficultyMultipler = 1;
           };
 
-          $scope.totalMiles = $rootScope.user.totalMiles * 0.000621371;
-          $scope.totalMEMiles = $scope.totalMiles * difficultyMultipler;
+          $scope.totalMiles = $rootScope.user.totalMiles;
+          $scope.currentJourneyTotalMiles = $scope.user.currentJourney.totalMiles;
+          $scope.totalMEMiles = $scope.currentJourneyTotalMiles * difficultyMultipler;
           $rootScope.totalMEMiles = $scope.totalMEMiles;
           achievementCheck();
+          completedCheck();
           $scope.currentPositionInfo = getCurrentPositionInfo();
         })
         .error(function(error) {
@@ -120,8 +124,14 @@ angular.module('profile')
     };
 
     $scope.updateDifficulty = function(newDifficulty){
+      var currentJourney = {
+        difficulty: newDifficulty,
+        startDate: moment().valueOf(),
+        runs: [],
+        totalMiles: 0
+      };
       Account.updateProfile({
-        difficulty: newDifficulty
+        currentJourney : currentJourney
       });
     };
 
@@ -162,6 +172,7 @@ angular.module('profile')
 
     var getCurrentPositionInfo = function(){
       var userMiles = $scope.totalMEMiles;
+
       if(userMiles >= 1800){
         return {
           landmark: "The Sammath Naur at Mount Doom",
@@ -455,7 +466,49 @@ angular.module('profile')
 
     var completedCheck = function(){
       if($scope.totalMEMiles >= 1800){
+        var difficultyList = ["Wizard", "Elf", "Man", "Dwarf", "Hobbit"];
+        var completedJourneys = $scope.user.achievements.timesCompleted + 1;
 
+        if($scope.user.achievements.fastestCompletionTime == null){
+          Account.updateProfile({
+            achievements: {
+              fastestCompletionTime: (moment().valueOf() - $scope.user.currentJourney.startDate),
+              fastestCompletionDifficulty: $scope.user.currentJourney.difficulty,
+              highestCompletionDifficulty: $scope.user.currentJourney.difficulty,
+              timesCompleted: 1
+            }
+          });
+        }else{
+          var newAchievements = {};
+
+          if($scope.user.achievements.fastestCompletionTime > (moment().valueOf() - $scope.user.currentJourney.startDate)){
+            newAchievements.fastestCompletionTime = (moment().valueOf() - $scope.user.currentJourney.startDate);
+            newAchievements.fastestCompletionDifficulty = $scope.user.currentJourney.difficulty;
+          }else{
+            newAchievements.fastestCompletionTime = $scope.user.achievements.fastestCompletionTime;
+            newAchievements.fastestCompletionDifficulty = $scope.user.achievements.fastestCompletionDifficulty;
+          }
+
+          if(difficultyList.indexOf($scope.user.achievements.highestCompletionDifficulty) < difficultyList.indexOf($scope.user.currentJourney.difficulty)){
+            newAchievements.highestCompletionDifficulty = $scope.user.currentJourney.difficulty;
+          }else {
+            newAchievements.highestCompletionDifficulty = $scope.user.achievements.highestCompletionDifficulty;
+          }
+          
+          newAchievements.timesCompleted = completedJourneys;
+
+          Account.updateProfile({
+            achievements: newAchievements
+          });
+        }
+        Account.updateProfile({
+          currentJourney: {
+            difficulty: null,
+            runs: null,
+            startDate: null,
+            totalMiles: null
+          }
+        })
       }
     }
 

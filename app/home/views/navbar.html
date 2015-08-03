@@ -17,7 +17,7 @@
   </div>
   <ul ng-if="isAuthenticated()" class="nav navbar-nav">
     <li><a href="/#/"><i class="ion-map"></i> Map of Middle Earth</a></li>
-    <li ng-if="!user.difficulty"><a href="/#/begin"><i class="fa fa-map-signs"></i> Begin Quest</a></li>
+    <li ng-if="!user.currentJourney.difficulty"><a href="/#/begin"><i class="fa fa-map-signs"></i> Begin Quest</a></li>
   </ul>
   <ul ng-if="!isAuthenticated()" class="nav navbar-nav pull-right">
     <li><a href="/#/login"><i class="fa fa-sign-in"></i> Login / Sign up</a></li>

@@ -110,6 +110,8 @@ map {
     margin-top: 0; }
   .profileInfoText ul {
     list-style: none; }
+  .profileInfoText .btn {
+    margin-top: 15px; }
 
 .btn-stravaLink {
   background-color: #FC4C02;
@@ -122,9 +124,13 @@ map {
     color: #FFF; }
 
 .achievementsList {
+  display: inline-block;
   list-style: none; }
   .achievementsList li {
     margin-bottom: 5px; }
+
+.splitUl {
+  width: 48%; }
 
 .text-muted {
   color: #393834; }
@@ -422,8 +428,11 @@ list-run a {
   float: right;
   margin-top: -40px; }
 
-.progressArea hr {
-  margin: 10px 0px 11px 0px; }
+.progressArea {
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px; }
 
 .progress-bar {
   background-color: #B04B3A; }

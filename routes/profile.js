@@ -13,6 +13,7 @@ router.route('/me')
   .all(ensureAuthenticated)
   .get(function(req, res) {
     User.findById(req.user, function(err, user) {
+      console.log(user);
       res.send(user);
     });
   })
@@ -29,11 +30,12 @@ router.route('/me')
       user.picture = req.body.picture || user.picture;
       user.location = req.body.location || user.location;
       user.runs = req.body.runs || user.runs;
-      user.difficulty = req.body.difficulty || user.difficulty;
+      user.currentJourney = req.body.currentJourney || user.currentJourney;
       user.achievements = req.body.achievements || user.achievements;
       user.joinDate = req.body.joinDate || user.joinDate;
       user.lastVisitDate = req.body.lastVisitDate || user.lastVisitDate;
       user.totalMiles = req.body.totalMiles || user.totalMiles;
+      console.log('acheivements: ', user.achievements);
       user.save(function(err) {
         res.status(200).end();
       });

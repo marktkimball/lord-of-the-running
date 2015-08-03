@@ -6,7 +6,8 @@ angular.module('MyApp', [
   'auth',
   'profile',
   'ngMap',
-  'map'
+  'map',
+  'moment'
 ])
 
 .config(function($routeProvider) {
@@ -32,7 +33,13 @@ angular.module('MyApp', [
 });
 
 angular
-    .module('lodash', [])
-    .factory('_', function($window){
-      return $window._;
-    });
+  .module('lodash', [])
+  .factory('_', function($window){
+    return $window._;
+  });
+
+angular
+  .module('moment', [])
+  .factory('moment', function($window){
+    return $window.moment;
+  });

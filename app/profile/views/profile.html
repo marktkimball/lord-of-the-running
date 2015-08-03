@@ -2,11 +2,45 @@
 
 <div class="container">
   <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <legend><i class="ion-arrow-graph-up-right"></i> Current Progress</legend>
+          <p ng-if="!user.strava">You must link your Strava acccount to start the journey</p>
+          <p ng-if="!user.currentJourney.difficulty">Click <label class="control-label"><a href="#/begin"><i class="fa fa-map-signs"></i> Begin Quest</a></label> to select a difficulty level and start the journey</p>
+          <ul ng-if="user.strava && user.currentJourney.difficulty" class="achievementsList splitUl">
+            <li><label class="control-label">Miles until Mount Doom:</label> <span class="pro5">{{achievements.untilMountDoom | number : 2}} miles</span></li>
+            <li><label class="control-label">Last Landmark:</label> <span class="pro5">{{currentPositionInfo.landmark}}</span></li>
+            <li><label class="control-label">Next Landmark:</label> <span class="pro5">{{currentPositionInfo.nextLandmark}}</span></li>
+            <li><label class="control-label">Miles Until Next Landmark:</label> <span class="pro5">{{currentPositionInfo.nextLandmarkMiles - totalMEMiles | number : 2}} miles</span></li>
+          </ul>
+          <ul ng-if="user.strava && user.currentJourney.difficulty" class="achievementsList splitUl">
+            <li><label class="control-label">Difficulty Level:</label> <span class="pro5">{{user.currentJourney.difficulty}}</span></li>
+            <li><label class="control-label">Current Journey Middle Earth Mileage:</label> <span ng-if="user.currentJourney.runs.length !== 0" class="pro5">{{totalMEMiles | number : 2}} miles</span><span ng-if="user.currentJourney.runs.length === 0" class="pro5">0.00</span></li>
+            <li><label class="control-label">Current Journey Total Mileage:</label> <span ng-if="user.currentJourney.runs.length !== 0" class="pro5">{{totalMEMiles | number : 2}} miles</span><span ng-if="user.currentJourney.runs.length === 0" class="pro5">0.00</span></li>
+            <li><label class="control-label">Current Journey Total Runs:</label> <span class="pro5">{{user.currentJourney.runs.length}}</span></li>
+          </ul>
+          <hr>
+          <div class="progressArea" ng-if="user.strava && user.currentJourney.difficulty">
+            <div class="pull-left progressText">The Shire</div>
+            <div class="pull-right progressText">Mt. Doom</div>
+            <div class="progress">
+             <div class="progress-bar" role="progressbar" aria-valuenow="{{100 - ((achievements.untilMountDoom / 1800) * 100) | number : 2}}" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: {{100 - ((achievements.untilMountDoom / 1800) * 100) | number : 2}}%;">
+               {{100 - ((achievements.untilMountDoom / 1800) * 100) | number : 2}}%
+             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-sm-7">
       <div class="panel panel-default">
         <div class="panel-body">
           <form method="post" ng-submit="updateProfile()">
-            <div class="form-group">
+            <div class="form-group"=>
               <legend><i class="fa fa-user"></i> My Profile</legend>
               <img class="profile-picture" ng-src="{{user.picture || 'http://virtualpiano.net/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png'}}">
               <div class="profileInfoText">
@@ -16,18 +50,13 @@
                   <li><label class="control-label">Email:</label> <span class="pro5">{{user.email}}</span></li>
                   <li><label class="control-label">Location:</label> <span class="pro5">{{user.location}}</span></li>
                   <li><label class="control-label">Joined:</label> <span class="pro5">{{user.joinDate | date : mediumDate}}</span></li>
-                  <li><hr></li>
-                  <li ng-if="user.strava"><label class="control-label">Difficulty Level:</label> <span class="pro5">{{user.difficulty}}</span></li>
-                  <li><label class="control-label">Total Middle Earth Mileage:</label> <span ng-if="user.strava" class="pro5">{{totalMEMiles | number : 2}} miles</span><span ng-if="!user.strava" class="pro5">0.00</span></li>
-                  <li><label class="control-label">Total Mileage:</label> <span ng-if="user.strava" class="pro5">{{totalMiles | number : 2}} miles</span><span ng-if="!user.strava" class="pro5">0.00</span></li>
-                  <li><label class="control-label">Total Runs:</label> <span ng-if="user.strava" class="pro5">{{runs.length}}</span><span ng-if="!user.strava" class="pro5">0</span></li>
+                  <li><button class="btn btn-warning" ng-click="selectTab(true)">Edit My Profile</button></li>
+                  <li><button class="btn btn-stravaLink" ng-if="user.strava" ng-click="unlink('strava')">Unlink Strava Account</button>
+                  <button class="btn btn-stravaLink" ng-if="!user.strava" ng-click="link('strava')">Link Strava Account</button></li>
                 </ul>
               </div>
             </div>
           </form>
-          <button class="btn btn-warning" ng-click="selectTab(true)">Edit My Profile</button>
-          <button class="btn btn-stravaLink" ng-if="user.strava" ng-click="unlink('strava')">Unlink Strava Account</button>
-          <button class="btn btn-stravaLink" ng-if="!user.strava" ng-click="link('strava')">Link Strava Account</button>
         </div>
       </div>
     </div>
@@ -35,30 +64,16 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <legend><i class="fa fa-trophy"></i> Achievements</legend>
-          <ul ng-if="user.strava && user.difficulty" class="achievementsList">
-            <li><label class="control-label">Miles until Mount Doom:</label> <span class="pro5">{{achievements.untilMountDoom | number : 2}} miles</span></li>
-            <li><label class="control-label">Last Landmark:</label> <span class="pro5">{{currentPositionInfo.landmark}}</span></li>
-            <li><label class="control-label">Next Landmark:</label> <span class="pro5">{{currentPositionInfo.nextLandmark}}</span></li>
-            <li><label class="control-label">Miles Until Next Landmark:</label> <span class="pro5">{{currentPositionInfo.nextLandmarkMiles - totalMEMiles | number : 2}} miles</span></li>
-            <li><label class="control-label">Farthest Run:</label> <span class="pro5">{{achievements.farthestRun | number : 2}} miles</span></li>
-            <li><label class="control-label">Longest Run:</label> <span class="pro5">{{achievements.longestRun | secondsToDateTime | date: 'HH:mm:ss'}}</span></li>
-            <li><label class="control-label">Fastest Pace:</label> <span class="pro5">{{achievements.fastestPace | secondsToDateTime| date: 'mm:ss'}} / mile</span></li>
-            <li><label class="control-label">Fastest Completion of Journey:</label> <span class="pro5">48 days (Hobbit)</span></li>
-            <li><label class="control-label">Highest Level Completed:</label> <span class="pro5">Man</span></li>
+          <ul ng-if="user.strava" class="achievementsList">
+            <li><label class="control-label">Total Runs:</label> <span ng-if="user.strava " class="pro5">{{runs.length}}</span><span ng-if="!user.strava" class="pro5">0</span></li>
+            <li><label class="control-label">Total Mileage:</label> <span ng-if="user.runs.length !== 0" class="pro5">{{totalMiles | number : 2}} miles</span><span ng-if="!user.strava || user.runs.length === 0" class="pro5">0.00</span></li>
+            <li ng-if="achievements.farthestRun" ><label class="control-label">Farthest Run:</label> <span class="pro5">{{achievements.farthestRun | number : 2}} miles</span></li>
+            <li ng-if="achievements.longestRun" ><label class="control-label">Longest Run:</label> <span class="pro5">{{achievements.longestRun | secondsToDateTime | date: 'HH:mm:ss'}}</span></li>
+            <li ng-if="achievements.fastestPace"><label class="control-label">Fastest Pace:</label> <span class="pro5">{{achievements.fastestPace | secondsToDateTime| date: 'mm:ss'}} / mile</span></li>
+            <li ng-if="user.achievements.fastestCompletionTime"><label class="control-label">Fastest Completion of Journey:</label> <span class="pro5">{{fastestCompletionTime}} ({{user.achievements.fastestCompletionDifficulty}})</span></li>
+            <li ng-if="user.achievements.highestCompletionDifficulty"><label class="control-label">Highest Level Completed:</label> <span class="pro5">{{user.achievements.highestCompletionDifficulty}}</span></li>
           </ul>
           <p ng-if="!user.strava">You must link your Strava acccount to view achievements</p>
-          <p ng-if="user.strava && !user.difficulty">You must select a difficulty level to view achievements</p>
-          <p ng-if="user.strava && !user.difficulty">Click <label class="control-label"><a href="#/begin"><i class="fa fa-map-signs"></i> Begin Quest</a></label> to select a difficulty level and start the journey</p>
-          <div class="progressArea" ng-if="user.strava && user.difficulty">
-            <hr>
-            <div class="pull-left progressText">The Shire</div>
-            <div class="pull-right progressText">Mt. Doom</div>
-            <div class="progress">
-             <div class="progress-bar" role="progressbar" aria-valuenow="{{100 - ((achievements.untilMountDoom / 1800) * 100) | number : 2}}" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: {{100 - ((achievements.untilMountDoom / 1800) * 100) | number : 2}}%;">
-               {{100 - ((achievements.untilMountDoom / 1800) * 100) | number : 2}}%
-             </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -41,18 +41,23 @@ router.route('/login')
         if (!isMatch) {
           return res.status(401).send({ message: 'Wrong email and/or password' });
         }
-        var lastRunPosition = user.runs.length - 1;
-        var lastRunDate = moment(user.runs[lastRunPosition].date).valueOf();
-        
+
+        if(user.runs.length === 0){
+          var lastRunDate = user.joinDate;
+        }else{
+          var lastRunPosition = user.runs.length - 1;
+          var lastRunDate = moment(user.runs[lastRunPosition].date).valueOf();
+        }
+
         if(user.strava){
-          strava.athlete.listActivities({id : user.strava, access_token : user.stravaToken, after: Math.floor(lastRunDate / 1000)}, function(err, payload){
+          strava.athlete.listActivities({id : user.strava, access_token : user.stravaToken}, function(err, payload){
             console.log("Err: " , err);
             user.lastVisitDate = moment().valueOf();
             var runData = payload;
-            // user.runs = [];
             if(runData.length > 0){
               for(var i = 0; i < runData.length; i++){
-                user.totalMiles += runData[i].distance;
+                user.totalMiles += runData[i].distance * 0.000621371;
+                user.currentJourney.totalMiles += runData[i].distance * 0.000621371;
                 if(runData[i].type === 'Run'){
                   var run = {
                     id: runData[i].id,
@@ -65,6 +70,7 @@ router.route('/login')
                     location: runData[i].location_city
                   };
                   user.runs.push(run);
+                  user.currentJourney.runs.push(run);
                 };
               };
             };
@@ -98,6 +104,13 @@ router.route('/login')
         password: req.body.password,
         joinDate: moment().valueOf(),
         totalMiles : 0,
+        currentJourney : {},
+        achievements : {
+          fastestCompletionTime: null,
+          fastestCompletionDifficulty: null,
+          highestCompletionDifficulty: null,
+          timesCompleted: 0
+        },
         name: ""
       });
       user.save(function() {
