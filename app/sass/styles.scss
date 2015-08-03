@@ -89,7 +89,7 @@ map{
     top: 50%;
     transform: translateY(-70%);
   }
-  h1{
+  h1, h2, h3, h4, h5{
     font-family: 'Cinzel Decorative', cursive;
   }
   a{
@@ -158,7 +158,6 @@ map{
 
 .achievementsList{
   list-style: none;
-  font-weight: bold;
   li{
     margin-bottom: 5px;
   }
@@ -170,7 +169,7 @@ map{
 
 .navbar {
   border: 0;
-  margin: 0px 15px 20px 15px;
+  margin-bottom: 20px;
 }
 
 .navbar-header {
@@ -215,6 +214,20 @@ map{
 .navbar-brand {
   margin-left: -15px;
   transition: 0.25s all;
+}
+
+.titleNavbar{
+  p{
+    font-size: 1.2em;
+    margin-bottom: 0;
+    display:inline-block;
+  }
+  .smallTitleNavbar{
+    display:inline-block;
+    p{
+      font-size: 0.8em;
+    }
+  }
 }
 
 legend{
@@ -330,15 +343,20 @@ list-run a{
   box-shadow: $materialDesignLevelOneShadow;
 }
 
+.individualRunContainer{
+  float:none;
+  margin: auto;
+}
+
 .individualRunLegend{
   text-align: center;
-  font-size: 3em;
+  font-size: 2em;
 }
 
 .individualRun{
   display:inline-block;
   width: 49%;
-  font-size: 2.5em;
+  font-size: 1.25em;
   ul{
     list-style: none;
   }
@@ -391,6 +409,24 @@ list-run a{
   padding: 8px;
   margin: 0;
   background-color: $panelColor;
+}
+
+.titleSignIn{
+  .largeTitle h1{
+    display:inline-block;
+  }
+  .smallTitle{
+    display:inline-block;
+  }
+  .signup-or-separator{
+    height: 5px;
+  }
+  h1{
+    font-size: 4em;
+  }
+  hr{
+    margin:30px auto 0px auto;
+  }
 }
 
 .has-feedback .form-control-feedback {
@@ -452,6 +488,25 @@ list-run a{
 .cancelProfileUpdate{
   float:right;
   margin-top: -40px;
+}
+
+.progressArea{
+  hr{
+    margin:10px 0px 11px 0px;
+  }
+}
+
+.progress-bar{
+  background-color: #B04B3A;
+}
+
+.progress{
+  margin-bottom: 0px;
+  clear:both;
+}
+
+.progressText{
+  font-weight: bold;
 }
 
 .btn {

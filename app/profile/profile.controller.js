@@ -30,7 +30,7 @@ angular.module('profile')
           $scope.totalMiles = $rootScope.user.totalMiles * 0.000621371;
           $scope.totalMEMiles = $scope.totalMiles * difficultyMultipler;
           $rootScope.totalMEMiles = $scope.totalMEMiles;
-          $scope.achievementCheck();
+          achievementCheck();
           $scope.currentPositionInfo = getCurrentPositionInfo();
         })
         .error(function(error) {
@@ -145,7 +145,7 @@ angular.module('profile')
       }
     };
 
-    $scope.achievementCheck = function(){
+    var achievementCheck = function(){
       for(var j = 0; j < $rootScope.runData.length; j++){
         if($scope.achievements.farthestRun < $rootScope.runData[j].distance){
           $scope.achievements.farthestRun = $rootScope.runData[j].distance;
@@ -160,7 +160,7 @@ angular.module('profile')
       $scope.achievements.untilMountDoom = (1800 - $scope.totalMEMiles);
     };
 
-    getCurrentPositionInfo = function(){
+    var getCurrentPositionInfo = function(){
       var userMiles = $scope.totalMEMiles;
       if(userMiles >= 1800){
         return {
@@ -452,6 +452,12 @@ angular.module('profile')
         }
       }
     };
+
+    var completedCheck = function(){
+      if($scope.totalMEMiles >= 1800){
+
+      }
+    }
 
     $scope.getProfile();
 

@@ -5,7 +5,20 @@
 <div class="container logInContainer" ng-controller="LoginCtrl as LoginCtrl">
   <div class="row" ng-show = "LoginCtrl.isSelected(1)">
     <div class="center-form panel">
-      <h1 class="text-center">Continue the Quest</h1>
+      <div class="titleSignIn">
+        <div class="largeTitle">
+          <h1>Lord </h1>
+          <div class="smallTitle">
+            <h4>of</h4><h4>the</h4>
+          </div>
+          <h1> Running</h1>
+        </div>
+        <h4>"One does not simply walk into Mordor"</h4>
+        <div class="signup-or-separator">
+          <hr>
+        </div>
+      </div>
+      <h2 class="text-center">Continue the Quest</h2>
       <form method="post" ng-submit="login()" name="loginForm">
         <div class="form-group has-feedback">
           <input class="form-control input-lg" type="text" name="email" ng-model="email" placeholder="Email" required autofocus>
@@ -29,7 +42,7 @@
         <h6 class="text">or</h6>
         <hr>
       </div>
-      <h1>Join the Quest</h1>
+      <h2>Join the Quest</h2>
       <p class="text-center">Don't have an account yet? <a href="" ng-click="LoginCtrl.selectTab(2)"> Sign Up</a></p>
       <br/>
     </div>

@@ -41,8 +41,11 @@ router.route('/login')
         if (!isMatch) {
           return res.status(401).send({ message: 'Wrong email and/or password' });
         }
+        var lastRunPosition = user.runs.length - 1;
+        var lastRunDate = moment(user.runs[lastRunPosition].date).valueOf();
+        
         if(user.strava){
-          strava.athlete.listActivities({id : user.strava, access_token : user.stravaToken, after: Math.floor(user.lastVisitDate / 1000)}, function(err, payload){
+          strava.athlete.listActivities({id : user.strava, access_token : user.stravaToken, after: Math.floor(lastRunDate / 1000)}, function(err, payload){
             console.log("Err: " , err);
             user.lastVisitDate = moment().valueOf();
             var runData = payload;
