@@ -518,6 +518,34 @@ list-run a{
   font-weight: bold;
 }
 
+.modal-backdrop.am-fade {
+  opacity: .5;
+  transition-delay: 3s;
+  transition: opacity .15s linear;
+  &.ng-enter {
+    opacity: 0;
+    &.ng-enter-active {
+      opacity: .5;
+    }
+  }
+  &.ng-leave {
+    opacity: .5;
+    &.ng-leave-active {
+      opacity: 0;
+    }
+  }
+}
+
+.modal-content{
+  background-color: $panelColor;
+  .modal-header{
+    border-color: $main-font-color;
+  }
+  .modal-footer{
+    border-color: $main-font-color;
+  }
+}
+
 .btn {
   font-weight: bold;
   border-radius: 2px;

@@ -11,11 +11,6 @@ $scope.map = {
   }
 }
 
-// $scope.click = function(event){
-//   console.log(event.latLng.G + ', ' + event.latLng.K);
-// }
-
-
 var frodoTotalJourneyCoordinates = [
   [76.3518964311259, -107.490234375], //HOBBITON, 0%
   [75.82365950624266, -105.97824096679688], //THE SHIRE
@@ -201,9 +196,8 @@ var frodoTotalJourneyCoordinates = [
 
 var currentJourneyPosition = Math.floor(($rootScope.totalMEMiles / 1800) * frodoTotalJourneyCoordinates.length);
 $scope.frodoJourneyCoordinates = frodoTotalJourneyCoordinates.slice(0, currentJourneyPosition);
-// $scope.frodoJourneyCoordinates = frodoTotalJourneyCoordinates;
-
-//5.04257 ME miles to 1 mile ratio to get accurate distance of 1800 miles, each point roughly 10 miles
+$scope.markerPosition = frodoTotalJourneyCoordinates[currentJourneyPosition - 1];
+console.log(currentJourneyPosition);
 
     });
 })();

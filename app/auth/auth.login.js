@@ -34,6 +34,7 @@ angular.module('auth')
             type: 'material',
             duration: 3
           });
+          $window.location.href = '/#/profile';
         })
         .catch(function(response) {
           $alert({

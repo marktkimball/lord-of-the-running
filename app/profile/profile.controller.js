@@ -3,7 +3,6 @@ angular.module('profile')
     /**
      * Get user's profile information.
      */
-
      $scope.achievements = {'farthestRun' : 0, 'fastestPace' : undefined, 'longestRun' : '', 'untilMountDoom' : 1800};
 
      $scope.getProfile = function() {
@@ -184,10 +183,7 @@ angular.module('profile')
           landmarkImage: ""
         };
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if(userMiles >= 1796){
@@ -200,10 +196,7 @@ angular.module('profile')
           landmarkImage: ""
         };
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if(userMiles >= 1730){
@@ -216,10 +209,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if(userMiles >= 1720){
@@ -232,10 +222,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if(userMiles >= 1650){
@@ -248,10 +235,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if(userMiles >= 1620){
@@ -264,10 +248,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if(userMiles >= 1600){
@@ -280,10 +261,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if(userMiles >= 1590){
@@ -296,10 +274,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 1560){
@@ -312,10 +287,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 1530){
@@ -328,10 +300,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 1480){
@@ -344,10 +313,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 1370){
@@ -360,10 +326,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 1340){
@@ -376,10 +339,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 1300){
@@ -392,10 +352,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 1280){
@@ -408,10 +365,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 930){
@@ -424,10 +378,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 890){
@@ -440,10 +391,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 850){
@@ -456,10 +404,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 840){
@@ -472,10 +417,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 800){
@@ -488,10 +430,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 720){
@@ -504,10 +443,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 490){
@@ -520,10 +456,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 450){
@@ -536,10 +469,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 440){
@@ -552,10 +482,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 230){
@@ -568,10 +495,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 180){
@@ -584,10 +508,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 130){
@@ -600,10 +521,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 80){
@@ -616,10 +534,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 60){
@@ -632,10 +547,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 40){
@@ -648,10 +560,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if (userMiles >= 10){
@@ -664,10 +573,7 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }else if ($scope.user.currentJourney.difficulty){
@@ -680,13 +586,19 @@ angular.module('profile')
           landmarkImage: ""
         }
         if($scope.user.currentPosition !== currentPositionInfo.landmark){
-          var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
-          Account.updateProfile({
-            currentPosition : currentPositionInfo.landmark
-          });
+          newPositionUpdate(currentPositionInfo);
         }
         return currentPositionInfo;
       }
+    };
+
+    function newPositionUpdate(currentPositionInfo){
+      setTimeout(function(){
+        var newLocationModal = $modal({title: currentPositionInfo.landmark, content: currentPositionInfo.description, show: true});
+      }, 2000);
+      Account.updateProfile({
+        currentPosition : currentPositionInfo.landmark
+      });
     };
 
     var completedCheck = function(){

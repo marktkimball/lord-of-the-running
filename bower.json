@@ -27,6 +27,7 @@
     "angular-bootstrap": "~0.13.0",
     "lodash": "~3.10.0",
     "ngmap": "~1.9.0",
-    "moment": "~2.10.6"
+    "moment": "~2.10.6",
+    "angular-motion": "~0.4.2"
   }
 }

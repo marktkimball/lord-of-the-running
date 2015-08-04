@@ -12,6 +12,7 @@
   <link href="//cdn.jsdelivr.net/animatecss/3.2.0/animate.css" rel="stylesheet">
 
   <!-- bower:css -->
+  <link rel="stylesheet" href="vendor/angular-motion/dist/angular-motion.css" />
   <!-- endbower -->
 
   <!-- inject:css -->
@@ -62,7 +63,7 @@
           return null;
         }
         var bound = Math.pow(2, zoom);
-        if(normalizedCoord.x >= 0 && normalizedCoord.y <= 12){
+        if(normalizedCoord.x >= 0 && normalizedCoord.x <= 12 && normalizedCoord.y >= 0 && normalizedCoord.y <= 9){
         return 'assets/middle_earth_map' +
             '/' + zoom + '/' + normalizedCoord.x + '/' +
             normalizedCoord.y + '.png';
@@ -92,7 +93,6 @@
   <script src="profile/profile.controller.js"></script>
   <script src="profile/profile.accountService.js"></script>
   <script src="map/map.module.js"></script>
-  <script src="map/map.service.js"></script>
   <script src="map/map.controller.js"></script>
   <script src="app.module.js"></script>
   <script src="home/navbar.js"></script>

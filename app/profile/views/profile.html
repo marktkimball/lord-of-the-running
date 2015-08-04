@@ -1,6 +1,6 @@
 <ng-include src="'home/views/navbar.html'"></ng-include>
 
-<div class="container" bs-modal="modal">
+<div class="container">
   <div class="row">
     <div class="col-sm-12">
       <div class="panel panel-default">
@@ -17,7 +17,7 @@
           <ul ng-if="user.strava && user.currentJourney.difficulty" class="achievementsList splitUl">
             <li><label class="control-label">Difficulty Level:</label> <span class="pro5">{{user.currentJourney.difficulty}}</span></li>
             <li><label class="control-label">Current Journey Middle Earth Mileage:</label> <span ng-if="user.currentJourney.runs.length !== 0" class="pro5">{{totalMEMiles | number : 2}} miles</span><span ng-if="user.currentJourney.runs.length === 0" class="pro5">0.00</span></li>
-            <li><label class="control-label">Current Journey Total Mileage:</label> <span ng-if="user.currentJourney.runs.length !== 0" class="pro5">{{totalMEMiles | number : 2}} miles</span><span ng-if="user.currentJourney.runs.length === 0" class="pro5">0.00</span></li>
+            <li><label class="control-label">Current Journey Total Mileage:</label> <span ng-if="user.currentJourney.runs.length !== 0" class="pro5">{{user.currentJourney.totalMiles | number : 2}} miles</span><span ng-if="user.currentJourney.runs.length === 0" class="pro5">0.00</span></li>
             <li><label class="control-label">Current Journey Total Runs:</label> <span class="pro5">{{user.currentJourney.runs.length}}</span></li>
           </ul>
           <hr>
@@ -158,5 +158,5 @@
       </div>
     </div>
   </div>
-
+<div data-animation="am-fade-and-slide-top" bs-modal="modal"></div>
 </div>

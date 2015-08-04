@@ -444,6 +444,28 @@ list-run a {
 .progressText {
   font-weight: bold; }
 
+.modal-backdrop.am-fade {
+  opacity: .5;
+  -webkit-transition-delay: 3s;
+          transition-delay: 3s;
+  -webkit-transition: opacity .15s linear;
+          transition: opacity .15s linear; }
+  .modal-backdrop.am-fade.ng-enter {
+    opacity: 0; }
+    .modal-backdrop.am-fade.ng-enter.ng-enter-active {
+      opacity: .5; }
+  .modal-backdrop.am-fade.ng-leave {
+    opacity: .5; }
+    .modal-backdrop.am-fade.ng-leave.ng-leave-active {
+      opacity: 0; }
+
+.modal-content {
+  background-color: #E1DED7; }
+  .modal-content .modal-header {
+    border-color: #393834; }
+  .modal-content .modal-footer {
+    border-color: #393834; }
+
 .btn {
   font-weight: bold;
   border-radius: 2px;

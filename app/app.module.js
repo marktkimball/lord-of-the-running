@@ -16,6 +16,10 @@ angular.module('MyApp', [
       templateUrl: 'home/views/home.html',
       controller: 'MapTypeImageCtrl'
     })
+    .when('/upload', {
+      templateUrl: 'upload/views/upload.html',
+      controller: 'UploadController'
+    })
     .when('/404', {
       template: '<h1>Sorry, page not found</h1>'
     })
