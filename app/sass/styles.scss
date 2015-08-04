@@ -209,9 +209,11 @@ map{
 }
 
 .navbar-default .navbar-brand {
-  font-family: 'Cinzel Decorative', cursive;
   color: #fff;
-  background-color: #864D2B;
+  img{
+    height:51px;
+    width:auto;
+  }
 }
 
 .navbar-default .navbar-brand:hover {
@@ -220,6 +222,7 @@ map{
 }
 
 .navbar-brand {
+  padding:0px;
   margin-left: -15px;
   transition: 0.25s all;
 }
@@ -250,23 +253,23 @@ hr{
 }
 
 .recentRunContainerKey{
-  display:flex;
-  justify-content: center;
+  display:block;
   margin: 0px 30px 0px 30px;
   div{
-    flex-grow: 1;
+    display:inline-block;
+    width: 24%;
   }
 }
 
 list-run a{
-  display: flex;
-  justify-content: center;
+  display: block;
   padding: 10px 30px 10px 30px;
     &:hover{
     text-decoration: none;
   }
   div{
-    flex-grow: 1;
+    display:inline-block;
+    width: 24%;
   }
 }
 
@@ -516,6 +519,11 @@ list-run a{
 
 .progressText{
   font-weight: bold;
+}
+
+.leaderboardContainer{
+  margin:auto;
+  float:none;
 }
 
 .modal-backdrop.am-fade {

@@ -1,22 +1,15 @@
 <div ng-controller="NavbarCtrl" class="navbar navbar-default navbar-static-top">
   <div class="navbar-header">
     <a ng-if="isAuthenticated()" class="navbar-brand titleNavbar" href="/#/">
-      <p>Lord </p>
-      <div class="smallTitleNavbar">
-        <p>of the</p>
-      </div>
-      <p> Running</p>
+      <img src="../../assets/logo.png"/>
     </a>
     <a ng-if="!isAuthenticated()" class="navbar-brand titleNavbar" href="/#/login">
-      <p>Lord </p>
-      <div class="smallTitleNavbar">
-        <p>of the</p>
-      </div>
-      <p> Running</p>
+      <img src="../../assets/logo.png"/>
     </a>
   </div>
   <ul ng-if="isAuthenticated()" class="nav navbar-nav">
     <li><a href="/#/"><i class="ion-map"></i> Map of Middle Earth</a></li>
+    <li><a href="#/leaderboard"><i class="fa fa-trophy"></i> Leaderboard</a></li>
     <li ng-if="!user.currentJourney.difficulty"><a href="/#/begin"><i class="fa fa-map-signs"></i> Begin Quest</a></li>
   </ul>
   <ul ng-if="!isAuthenticated()" class="nav navbar-nav pull-right">

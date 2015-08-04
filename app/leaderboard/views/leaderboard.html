@@ -1,0 +1,27 @@
+<ng-include src="'home/views/navbar.html'"></ng-include>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 leaderboardContainer">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <legend><i class="fa fa-trophy"></i> Leaderboard</legend>
+          <ul class="achievementsList">
+            <li><label class="control-label">Most Journeys Completed:</label> <span ng-if="leaders.timesCompleted">{{leaders.timesCompleted.timesCompleted}} - {{leaders.timesCompleted.displayName}}</span><span ng-if="!leaders.timesCompleted">Up for grabs! Complete the journey and claim the spot on the leaderboard!</span></li>
+            <li><label class="control-label">Fastest Completion Time:</label> <span ng-if="fastestCompletedTime">{{fastestCompletedTime}} ({{leaders.fastestCompletedDifficulty}}) - {{leaders.fastestCompletedTime.displayName}}</span><span ng-if="!fastestCompletedTime">Up for grabs! Complete the journey and claim the spot on the leaderboard!</span></li>
+            <li><label class="control-label">Fastest Hobbit Completion:</label> <span ng-if="fastestHobbitTime">{{fastestHobbitTime}} - {{leaders.fastestHobbitTime.displayName}}</span><span ng-if="!fastestHobbitTime">Up for grabs! Complete the journey as a Hobbit and claim the spot on the leaderboard!</span></li>
+            <li><label class="control-label">Fastest Dwarf Completion:</label> <span ng-if="fastestDwarfTime">{{fastestDwarfTime}} - {{leaders.fastestDwarfTime.displayName}}</span><span ng-if="!fastestDwarfTime">Up for grabs! Complete the journey as a Dwarf and claim the spot on the leaderboard!</span></li>
+            <li><label class="control-label">Fastest Man Completion:</label> <span ng-if="fastestManTime">{{fastestManTime}} - {{leaders.fastestManTime.displayName}}</span><span ng-if="!fastestManTime">Up for grabs! Complete the journey as a Man and claim the spot on the leaderboard!</span></li>
+            <li><label class="control-label">Fastest Elf Completion:</label> <span ng-if="fastestElfTime">{{fastestElfTime}} - {{leaders.fastestElfTime.displayName}}</span><span ng-if="!fastestElfTime">Up for grabs! Complete the journey as an Elf and claim the spot on the leaderboard!</span></li>
+            <li><label class="control-label">Fastest Wizard Completion:</label> <span ng-if="fastestWizardTime">{{fastestWizardTime}} - {{leaders.fastestWizardTime.displayName}}</span><span ng-if="!fastestWizardTime">Up for grabs! Complete the journey as a Wizard and claim the spot on the leaderboard!</span></li>
+            <li><label class="control-label">Lord of the Hobbits:</label> <span ng-if="leaders.timesCompletedHobbit">{{leaders.timesCompletedHobbit.displayName}} ({{leaders.timesCompletedHobbit.timesCompletedHobbit}} completed journeys)</span><span ng-if="!leaders.timesCompletedHobbit">Up for grabs! Complete the journey as a Hobbit to become the Lord of the Hobbits!</span></li>
+            <li><label class="control-label">Lord of the Dwarves:</label> <span ng-if="leaders.timesCompletedDwarf">{{leaders.timesCompletedDwarf.displayName}} ({{leaders.timesCompletedDwarf.timesCompletedDwarf}} completed journeys)</span><span ng-if="!leaders.timesCompletedDwarf">Up for grabs! Complete the journey as a Dwarf to become the Lord of the Dwarves!</span></li>
+            <li><label class="control-label">Lord of the Men:</label> <span ng-if="leaders.timesCompletedMan">{{leaders.timesCompletedMan.displayName}} ({{leaders.timesCompletedMan.timesCompletedMan}} completed journeys)</span><span ng-if="!leaders.timesCompletedMan">Up for grabs! Complete the journey as a Man to become the Lord of the Men!</span></li>
+            <li><label class="control-label">Lord of the Elves:</label> <span ng-if="leaders.timesCompletedElf">{{leaders.timesCompletedElf.displayName}} ({{leaders.timesCompletedElf.timesCompletedElf}} completed journeys)</span><span ng-if="!leaders.timesCompletedElf">Up for grabs! Complete the journey as a Elf to become the Lord of the Elves!</span></li>
+            <li><label class="control-label">Lord of the Wizards:</label> <span ng-if="leaders.timesCompletedWizard">{{leaders.timesCompletedWizard.displayName}} ({{leaders.timesCompletedWizard.timesCompletedWizard}} completed journeys)</span><span ng-if="!leaders.timesCompletedWizard">Up for grabs! Complete the journey as a Wizard to become the Lord of the Wizards!</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,10 +18,16 @@ var userSchema = new mongoose.Schema({
     difficulty: String
   },
   achievements: {
-    fastestCompletionTime: Number,
-    fastestCompletionDifficulty: String,
-    highestCompletionDifficulty: String,
-    timesCompleted: Number
+    fastestWizardTime: Number,
+    fastestElfTime: Number,
+    fastestManTime: Number,
+    fastestDwarfTime: Number,
+    fastestHobbitTime: Number,
+    timesCompletedWizard: Number,
+    timesCompletedElf: Number,
+    timesCompletedMan: Number,
+    timesCompletedDwarf: Number,
+    timesCompletedHobbit: Number
   },
   totalMiles: Number,
   joinDate: String,

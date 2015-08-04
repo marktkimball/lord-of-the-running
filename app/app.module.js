@@ -7,6 +7,7 @@ angular.module('MyApp', [
   'profile',
   'ngMap',
   'map',
+  'leaderboard',
   'moment'
 ])
 
@@ -16,9 +17,9 @@ angular.module('MyApp', [
       templateUrl: 'home/views/home.html',
       controller: 'MapTypeImageCtrl'
     })
-    .when('/upload', {
-      templateUrl: 'upload/views/upload.html',
-      controller: 'UploadController'
+    .when('/leaderboard', {
+      templateUrl: 'leaderboard/views/leaderboard.html',
+      controller: 'LeaderboardController'
     })
     .when('/404', {
       template: '<h1>Sorry, page not found</h1>'

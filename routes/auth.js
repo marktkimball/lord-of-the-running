@@ -48,7 +48,7 @@ router.route('/login')
           var lastRunPosition = user.runs.length - 1;
           var lastRunDate = moment(user.runs[lastRunPosition].date).valueOf();
         }
-        
+
         if(user.strava){
           strava.athlete.listActivities({id : user.strava, access_token : user.stravaToken, after : Math.floor(lastRunDate / 1000)}, function(err, payload){
             console.log("Err: " , err);
@@ -109,7 +109,17 @@ router.route('/login')
           fastestCompletionTime: null,
           fastestCompletionDifficulty: null,
           highestCompletionDifficulty: null,
-          timesCompleted: 0
+          timesCompleted: 0,
+          fastestWizardTime: null,
+          fastestElfTime: null,
+          fastestManTime: null,
+          fastestDwarfTime: null,
+          fastestHobbitTime: null,
+          timesCompletedWizard: 0,
+          timesCompletedElf: 0,
+          timesCompletedMan: 0,
+          timesCompletedDwarf: 0,
+          timesCompletedHobbit: 0
         },
         name: "",
         currentPosition: ""

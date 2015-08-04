@@ -1,7 +1,6 @@
 angular.module('profile')
-  .factory('Account', function($http, $q, $cacheFactory) {
-    var cacheCreator = $cacheFactory('CacheCreator');
-
+  .factory('Account', function($http) {
+    
     var getProfile = function(){
       return $http.get('/api/me');
     };

@@ -162,15 +162,17 @@ map {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
 .navbar-default .navbar-brand {
-  font-family: 'Cinzel Decorative', cursive;
-  color: #fff;
-  background-color: #864D2B; }
+  color: #fff; }
+  .navbar-default .navbar-brand img {
+    height: 51px;
+    width: auto; }
 
 .navbar-default .navbar-brand:hover {
   color: #fff;
   background-color: #864D2B; }
 
 .navbar-brand {
+  padding: 0px;
   margin-left: -15px;
   -webkit-transition: 0.25s all;
           transition: 0.25s all; }
@@ -194,38 +196,20 @@ hr {
   margin: 5px 0px 5px 0px; }
 
 .recentRunContainerKey {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  display: block;
   margin: 0px 30px 0px 30px; }
   .recentRunContainerKey div {
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1; }
+    display: inline-block;
+    width: 24%; }
 
 list-run a {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  display: block;
   padding: 10px 30px 10px 30px; }
   list-run a:hover {
     text-decoration: none; }
   list-run a div {
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1; }
+    display: inline-block;
+    width: 24%; }
 
 .beginQuest {
   float: none;
@@ -443,6 +427,10 @@ list-run a {
 
 .progressText {
   font-weight: bold; }
+
+.leaderboardContainer {
+  margin: auto;
+  float: none; }
 
 .modal-backdrop.am-fade {
   opacity: .5;
