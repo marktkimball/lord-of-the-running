@@ -30,7 +30,7 @@ angular.module('auth', ['ngMessages', 'ngRoute', 'mgcrea.ngStrap', 'satellizer']
         redirectTo: '/login'
       });
 
-    $authProvider.strava({
-      clientId: '7062'
-    });
+    // $authProvider.strava({
+    //   clientId: '7062'
+    // });
   });
