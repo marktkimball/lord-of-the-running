@@ -76,7 +76,7 @@ map {
   .logInContainer p {
     margin: 5px; }
   .logInContainer .form-group {
-    width: 90%;
+    width: 50%;
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px; }
@@ -87,7 +87,7 @@ map {
     margin-bottom: 10px;
     opacity: 1; }
   .logInContainer .mainSignUpButton {
-    width: 90%;
+    width: 50%;
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -97,6 +97,8 @@ map {
     .logInContainer .mainSignUpButton:hover {
       background-color: #526A7A;
       border-color: #526A7A; }
+  .logInContainer .btn-success {
+    width: 50%; }
 
 .stravaLogin {
   padding: 10px; }

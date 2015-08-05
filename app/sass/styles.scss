@@ -99,7 +99,7 @@ map{
     margin:5px;
   }
   .form-group{
-    width:90%;
+    width:50%;
     margin:auto;
     margin-top:10px;
     margin-bottom:10px;
@@ -112,7 +112,7 @@ map{
     opacity: 1;
   }
   .mainSignUpButton{
-    width:90%;
+    width:50%;
     margin:auto;
     margin-top:10px;
     margin-bottom:10px;
@@ -123,6 +123,9 @@ map{
       background-color: #526A7A;
       border-color: #526A7A;
     }
+  }
+  .btn-success{
+    width: 50%;
   }
 }
 

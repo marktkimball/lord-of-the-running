@@ -4,12 +4,12 @@
     .module('leaderboard')
     .factory('LeaderboardService', function($http){
 
-      var getAllUsers = function(){
-        return $http.get('/api/allUsers');
+      var getLeaders = function(){
+        return $http.get('/api/leaders');
       };
 
       return{
-        getAllUsers: getAllUsers
+        getLeaders: getLeaders
       };
     })
 })();

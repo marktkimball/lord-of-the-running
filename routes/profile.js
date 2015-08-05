@@ -14,7 +14,6 @@ router.route('/me')
   .all(ensureAuthenticated)
   .get(function(req, res) {
     User.findById(req.user, function(err, user) {
-      console.log(user);
       res.send(user);
     });
   })
@@ -43,35 +42,35 @@ router.route('/me')
     });
   });
 
-  router.route('/allUsers')
+  router.route('/leaders')
     .all(ensureAuthenticated)
     .get(function(req, res){
       User.find({}, function(err, users){
         var usersAchievements = _.chain(users)
           .map(function(user){
+            var timesCompleted = 0;
+            var fastestCompletedDifficulty = null;
+            var fastestCompletedTime = null;
+
             if(user.achievements.timesCompletedWizard || user.achievements.timesCompletedElf || user.achievements.timesCompletedMan || user.achievements.timesCompletedDwarf || user.achievements.timesCompletedHobbit){
-              var timesCompleted = user.achievements.timesCompletedWizard + user.achievements.timesCompletedElf + user.achievements.timesCompletedMan + user.achievements.timesCompletedDwarf + user.achievements.timesCompletedHobbit;
-              var fastestCompletedDifficulty = "Wizard";
-              var fastestCompletedTime = user.achievements.fastestWizardTime;
-            }else{
-              var timesCompleted = 0;
-              var fastestCompletedDifficulty = null;
-              var fastestCompletedTime = null;
+              timesCompleted = user.achievements.timesCompletedWizard + user.achievements.timesCompletedElf + user.achievements.timesCompletedMan + user.achievements.timesCompletedDwarf + user.achievements.timesCompletedHobbit;
+              fastestCompletedDifficulty = "Wizard";
+              fastestCompletedTime = user.achievements.fastestWizardTime;
             }
 
             //Check for fastest completed time
-            if(user.achievements.fastestElfTime <= fastestCompletedTime || (fastestCompletedTime === null && user.achievements.fastestElfTime)){
+            if(user.achievements.fastestElfTime && user.achievements.fastestElfTime <= fastestCompletedTime || (fastestCompletedTime === null && user.achievements.fastestElfTime)){
               fastestCompletedTime = user.achievements.fastestElfTime;
-              fastedCompletedDifficulty = "Elf";
-            }else if(user.achievements.fastestManTime <= fastestCompletedTime || (fastestCompletedTime === null && user.achievements.fastestManTime)){
+              fastestCompletedDifficulty = "Elf";
+            }else if(user.achievements.fastestManTime && user.achievements.fastestManTime <= fastestCompletedTime || (fastestCompletedTime === null && user.achievements.fastestManTime)){
               fastestCompletedTime = user.achievements.fastestManTime;
-              fastedCompletedDifficulty = "Man";
-            }else if(user.achievements.fastestDwarfTime <= fastestCompletedTime || (fastestCompletedTime === null && user.achievements.fastestDwarfTime)){
+              fastestCompletedDifficulty = "Man";
+            }else if(user.achievements.fastestDwarfTime && user.achievements.fastestDwarfTime <= fastestCompletedTime || (fastestCompletedTime === null && user.achievements.fastestDwarfTime)){
               fastestCompletedTime = user.achievements.fastestDwarfTime;
-              fastedCompletedDifficulty = "Dwarf";
-            }else if(user.achievements.fastestHobbitTime <= fastestCompletedTime || (fastestCompletedTime === null && user.achievements.fastestHobbitTime)){
+              fastestCompletedDifficulty = "Dwarf";
+            }else if(user.achievements.fastestHobbitTime && user.achievements.fastestHobbitTime <= fastestCompletedTime || (fastestCompletedTime === null && user.achievements.fastestHobbitTime)){
               fastestCompletedTime = user.achievements.fastestHobbitTime;
-              fastedCompletedDifficulty = "Hobbit";
+              fastestCompletedDifficulty = "Hobbit";
             }
 
             //Return mapped user
@@ -93,6 +92,7 @@ router.route('/me')
           })
           .value();
 
+        //Initialize empty leaderboard
         var leaders = {
           fastestWizardTime: null,
           fastestElfTime: null,
@@ -109,47 +109,71 @@ router.route('/me')
           timesCompleted: null
         };
 
+        //CHECK FOR NEW LEADERS
         _.forEach(usersAchievements, function(el){
-          if(el.fastestWizardTime && el.fastestWizardTime < leaders.fastestWizardTime.fastestWizardTime){
+          if(el.fastestWizardTime && leaders.fastestWizardTime === null){
+            leaders.fastestWizardTime = {displayName: el.displayName, fastestWizardTime: el.fastestWizardTime};
+          }else if(el.fastestWizardTime && (el.fastestWizardTime < leaders.fastestWizardTime.fastestWizardTime)){
             leaders.fastestWizardTime = {displayName: el.displayName, fastestWizardTime: el.fastestWizardTime};
           }
-          if(el.fastestElfTime && el.fastestElfTime < leaders.fastestElfTime.fastestElfTime){
+          if(el.fastestElfTime && leaders.fastestElfTime === null){
+            leaders.fastestElfTime = {displayName: el.displayName, fastestElfTime: el.fastestElfTime};
+          }else if(el.fastestElfTime && (el.fastestElfTime < leaders.fastestElfTime.fastestElfTime)){
             leaders.fastestElfTime = {displayName: el.displayName, fastestElfTime: el.fastestElfTime};
           }
-          if(el.fastestManTime && el.fastestManTime < leaders.fastestManTime.fastestManTime){
+          if(el.fastestManTime && leaders.fastestManTime === null){
+            leaders.fastestManTime = {displayName: el.displayName, fastestManTime: el.fastestManTime};
+          }else if(el.fastestManTime && (el.fastestManTime < leaders.fastestManTime.fastestManTime)){
             leaders.fastestManTime = {displayName: el.displayName, fastestManTime: el.fastestManTime};
           }
-          if(el.fastestDwarfTime && el.fastestDwarfTime < leaders.fastestDwarfTime.fastestDwarfTime){
+          if(el.fastestDwarfTime && leaders.fastestDwarfTime === null){
+            leaders.fastestDwarfTime = {displayName: el.displayName, fastestDwarfTime: el.fastestDwarfTime};
+          }else if(el.fastestDwarfTime && (el.fastestDwarfTime < leaders.fastestDwarfTime.fastestDwarfTime)){
             leaders.fastestDwarfTime = {displayName: el.displayName, fastestDwarfTime: el.fastestDwarfTime};
           }
-          if(el.fastestHobbitTime && el.fastestHobbitTime < leaders.fastestHobbitTime.fastestHobbitTime){
+          if(el.fastestHobbitTime && leaders.fastestHobbitTime === null){
+            leaders.fastestHobbitTime = {displayName: el.displayName, fastestHobbitTime: el.fastestHobbitTime};
+          }else if(el.fastestHobbitTime && (el.fastestHobbitTime < leaders.fastestHobbitTime.fastestHobbitTime)){
             leaders.fastestHobbitTime = {displayName: el.displayName, fastestHobbitTime: el.fastestHobbitTime};
           }
-          if(el.timesCompletedWizard && el.timesCompletedWizard > leaders.timesCompletedWizard.timesCompletedWizard){
+          if(el.timesCompletedWizard && leaders.timesCompletedWizard === null){
+            leaders.timesCompletedWizard = {displayName: el.displayName, timesCompletedWizard: el.timesCompletedWizard};
+          }else if(el.timesCompletedWizard && (el.timesCompletedWizard > leaders.timesCompletedWizard.timesCompletedWizard)){
             leaders.timesCompletedWizard = {displayName: el.displayName, timesCompletedWizard: el.timesCompletedWizard};
           }
-          if(el.timesCompletedElf && el.timesCompletedElf > leaders.timesCompletedElf.timesCompletedElf){
+          if(el.timesCompletedElf && leaders.timesCompletedElf === null){
+            leaders.timesCompletedElf = {displayName: el.displayName, timesCompletedElf: el.timesCompletedElf};
+          }else if(el.timesCompletedElf && (el.timesCompletedElf > leaders.timesCompletedElf.timesCompletedElf)){
             leaders.timesCompletedElf = {displayName: el.displayName, timesCompletedElf: el.timesCompletedElf};
           }
-          if(el.timesCompletedMan && el.timesCompletedMan > leaders.timesCompletedMan.timesCompletedMan){
+          if(el.timesCompletedMan && leaders.timesCompletedMan === null){
+            leaders.timesCompletedMan = {displayName: el.displayName, timesCompletedMan: el.timesCompletedMan};
+          }else if(el.timesCompletedMan && (el.timesCompletedMan > leaders.timesCompletedMan.timesCompletedMan)){
             leaders.timesCompletedMan = {displayName: el.displayName, timesCompletedMan: el.timesCompletedMan};
           }
-          if(el.timesCompletedDwarf && el.timesCompletedDwarf > leaders.timesCompletedDwarf.timesCompletedDwarf){
+          if(el.timesCompletedDwarf && leaders.timesCompletedDwarf === null){
+            leaders.timesCompletedDwarf = {displayName: el.displayName, timesCompletedDwarf: el.timesCompletedDwarf};
+          }else if(el.timesCompletedDwarf && (el.timesCompletedDwarf > leaders.timesCompletedDwarf.timesCompletedDwarf)){
             leaders.timesCompletedDwarf = {displayName: el.displayName, timesCompletedDwarf: el.timesCompletedDwarf};
           }
-          if(el.timesCompletedHobbit && el.timesCompletedHobbit > leaders.timesCompletedHobbit.timesCompletedHobbit){
+          if(el.timesCompletedHobbit && leaders.timesCompletedHobbit === null){
+            leaders.timesCompletedHobbit = {displayName: el.displayName, timesCompletedHobbit: el.timesCompletedHobbit};
+          }else if(el.timesCompletedHobbit && (el.timesCompletedHobbit > leaders.timesCompletedHobbit.timesCompletedHobbit)){
             leaders.timesCompletedHobbit = {displayName: el.displayName, timesCompletedHobbit: el.timesCompletedHobbit};
           }
-          if(el.fastestCompletedTime && el.fastestCompletedTime < leaers.fastestCompletedTime.fastestCompletedTime){
+          if(el.fastestCompletedTime && leaders.fastestCompletedTime === null){
+            leaders.fastestCompletedTime = {displayName: el.displayName, fastestCompletedTime: el.fastestCompletedTime};
+            leaders.fastestCompletedDifficulty = el.fastestCompletedDifficulty;
+          }else if(el.fastestCompletedTime && (el.fastestCompletedTime < leaders.fastestCompletedTime.fastestCompletedTime)){
             leaders.fastestCompletedTime = {displayName: el.displayName, fastestCompletedTime: el.fastestCompletedTime};
             leaders.fastestCompletedDifficulty = el.fastestCompletedDifficulty;
           }
-          if(el.timesCompleted && el.timesCompleted > leaders.timesCompleted.timesCompleted){
+          if(el.timesCompleted && leaders.timesCompleted === null){
+            leaders.timesCompleted = {displayName: el.displayName, timesCompleted: el.timesCompleted};
+          }else if(el.timesCompleted && (el.timesCompleted > leaders.timesCompleted.timesCompleted)){
             leaders.timesCompleted = {displayName: el.displayName, timesCompleted: el.timesCompleted};
           }
         });
-
-        console.log("ALL TIME LEADERS: ", leaders);
 
         res.send(leaders);
       });

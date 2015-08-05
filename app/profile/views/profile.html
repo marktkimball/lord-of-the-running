@@ -69,9 +69,9 @@
             <li ng-if="achievements.farthestRun" ><label class="control-label">Farthest Run:</label> <span class="pro5">{{achievements.farthestRun | number : 2}} miles</span></li>
             <li ng-if="achievements.longestRun" ><label class="control-label">Longest Run:</label> <span class="pro5">{{achievements.longestRun | secondsToDateTime | date: 'HH:mm:ss'}}</span></li>
             <li ng-if="achievements.fastestPace"><label class="control-label">Fastest Pace:</label> <span class="pro5">{{achievements.fastestPace | secondsToDateTime| date: 'mm:ss'}} / mile</span></li>
-            <li ng-if="user.achievements.fastestCompletionTime"><label class="control-label">Fastest Completion of Journey:</label> <span class="pro5">{{fastestCompletionTime}} ({{user.achievements.fastestCompletionDifficulty}})</span></li>
-            <li ng-if="user.achievements.highestCompletionDifficulty"><label class="control-label">Highest Level Completed:</label> <span class="pro5">{{user.achievements.highestCompletionDifficulty}}</span></li>
-            <li ng-if="user.achievements.timesCompleted > 0"><label class="control-label">Number of Journeys Completed:</label> <span class="pro5">{{user.achievements.timesCompleted}}</span></li>
+            <li ng-if="achievements.fastestCompletionTime !== undefined"><label class="control-label">Fastest Completion of Journey:</label> <span class="pro5">{{achievements.fastestCompletionTime}} ({{achievements.fastestCompletionDifficulty}})</span></li>
+            <li ng-if="achievements.highestCompletionDifficulty"><label class="control-label">Highest Level Completed:</label> <span class="pro5">{{achievements.highestCompletionDifficulty}}</span></li>
+            <li ng-if="achievements.timesCompleted > 0"><label class="control-label">Number of Journeys Completed:</label> <span class="pro5">{{achievements.timesCompleted}}</span></li>
           </ul>
           <p ng-if="!user.strava">You must link your Strava acccount to view achievements</p>
         </div>

@@ -197,7 +197,6 @@ var frodoTotalJourneyCoordinates = [
 var currentJourneyPosition = Math.floor(($rootScope.totalMEMiles / 1800) * frodoTotalJourneyCoordinates.length);
 $scope.frodoJourneyCoordinates = frodoTotalJourneyCoordinates.slice(0, currentJourneyPosition);
 $scope.markerPosition = frodoTotalJourneyCoordinates[currentJourneyPosition - 1];
-console.log(currentJourneyPosition);
 
     });
 })();

@@ -5,9 +5,8 @@
     .controller('LeaderboardController', function($scope, LeaderboardService){
 
       var getLeaders = function(){
-        LeaderboardService.getAllUsers()
+        LeaderboardService.getLeaders()
           .success(function(data){
-            console.log("All Users: ", data);
             $scope.leaders = data;
             if(data.fastestCompletedTime){
               $scope.fastestCompletedTime = moment.duration(data.fastestCompletedTime.fastestCompletedTime).humanize();
@@ -27,7 +26,7 @@
             if(data.fastestWizardTime){
               $scope.fastestWizardTime = moment.duration(data.fastestWizardTime.fastestWizardTime).humanize();
             }
-            
+
           })
       }
 
