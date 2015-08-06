@@ -37,7 +37,7 @@ angular.module('profile')
 
           $scope.totalMiles = $rootScope.user.totalMiles;
 
-          // achievementCheck();
+          achievementCheck();
           if($scope.totalMEMiles >= 1800){
             completedCheck();
           }

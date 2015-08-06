@@ -11,7 +11,6 @@ angular.module('auth')
       })
       .catch(function(response) {
         if (typeof response.data.message === 'object') {
-          console.log("Catch IF function");
           angular.forEach(response.data.message, function(message) {
             $alert({
               content: message[0],
