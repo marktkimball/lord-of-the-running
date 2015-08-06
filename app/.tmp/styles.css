@@ -132,6 +132,7 @@ map {
     margin-bottom: 5px; }
 
 .splitUl {
+  vertical-align: top;
   width: 48%; }
 
 .text-muted {
@@ -631,6 +632,9 @@ list-run a {
     background-color: #884D22;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
+  .leaderboardContainer {
+    width: 100%; }
+
   .navbar-default .navbar-brand {
     width: 100%;
     margin: auto;
@@ -641,6 +645,9 @@ list-run a {
       width: 100%;
       height: auto;
       margin: auto; } }
+@media screen and (max-width: 767px) {
+  .individualRunContainer {
+    margin: 0px 15px 0px 15px; } }
 @media screen and (max-width: 650px) {
   .navbar-header {
     display: -webkit-box;

@@ -171,6 +171,7 @@ map{
 }
 
 .splitUl{
+  vertical-align: top;
   width: 48%;
 }
 
@@ -773,6 +774,11 @@ list-run a{
     background-color: #884D22;
     box-shadow: $materialDesignLevelTwoShadow
   }
+
+  .leaderboardContainer{
+    width: 100%;
+  }
+
   .navbar-default .navbar-brand{
     width:100%;
     margin:auto;
@@ -784,6 +790,12 @@ list-run a{
       height:auto;
       margin:auto;
     }
+  }
+}
+
+@media screen and (max-width: 767px){
+  .individualRunContainer{
+    margin: 0px 15px 0px 15px;
   }
 }
 
