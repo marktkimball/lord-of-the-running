@@ -14,8 +14,11 @@ angular.module('MyApp', [
 .config(function($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'home/views/home.html',
-      controller: 'MapTypeImageCtrl'
+      templateUrl: 'auth/views/login.html'
+    })
+    .when('/map', {
+      templateUrl: 'map/views/map.html',
+      controller: 'MapTypeImageController'
     })
     .when('/leaderboard', {
       templateUrl: 'leaderboard/views/leaderboard.html',

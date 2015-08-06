@@ -12,29 +12,38 @@ angular.module('profile')
          $scope.runs = data.runs;
          $rootScope.user = data;
          $rootScope.runData = data.runs;
-         $scope.fastestCompletionTime = moment.duration(data.achievements.fastestCompletionTime).humanize();
+         if(data.achievements){
+           $scope.fastestCompletionTime = moment.duration(data.achievements.fastestCompletionTime).humanize();
+         }
 
          //Set difficultyMultipler
          var difficultyMultipler;
-          if(data.currentJourney.difficulty === "Wizard"){
-            difficultyMultipler = 10;
-          }else if(data.currentJourney.difficulty === "Elf"){
-            difficultyMultipler = 5;
-          }else if(data.currentJourney.difficulty === "Man"){
-            difficultyMultipler = 3;
-          }else if(data.currentJourney.difficulty === "Dwarf"){
-            difficultyMultipler = 2;
-          }else{
-            difficultyMultipler = 1;
+         if(data.currentJourney){
+            if(data.currentJourney.difficulty === "Wizard"){
+              difficultyMultipler = 10;
+            }else if(data.currentJourney.difficulty === "Elf"){
+              difficultyMultipler = 5;
+            }else if(data.currentJourney.difficulty === "Man"){
+              difficultyMultipler = 3;
+            }else if(data.currentJourney.difficulty === "Dwarf"){
+              difficultyMultipler = 2;
+            }else{
+              difficultyMultipler = 1;
+            };
+            $scope.currentJourneyTotalMiles = $scope.user.currentJourney.totalMiles;
+            $scope.totalMEMiles = $scope.currentJourneyTotalMiles * difficultyMultipler;
+            $rootScope.totalMEMiles = $scope.totalMEMiles;
           };
 
           $scope.totalMiles = $rootScope.user.totalMiles;
-          $scope.currentJourneyTotalMiles = $scope.user.currentJourney.totalMiles;
-          $scope.totalMEMiles = $scope.currentJourneyTotalMiles * difficultyMultipler;
-          $rootScope.totalMEMiles = $scope.totalMEMiles;
-          achievementCheck();
-          completedCheck();
-          $scope.currentPositionInfo = getCurrentPositionInfo();
+
+          // achievementCheck();
+          if($scope.totalMEMiles >= 1800){
+            completedCheck();
+          }
+          if($scope.user.currentJourney){
+            $scope.currentPositionInfo = getCurrentPositionInfo();
+          }
         })
         .error(function(error) {
           $alert({
@@ -655,61 +664,59 @@ angular.module('profile')
     };
 
     var completedCheck = function(){
-      if($scope.totalMEMiles >= 1800){
-        var currentAchievements = $rootScope.user.achievements;
-        var currentJourney = $rootScope.user.currentJourney;
-        var difficultyList = ["Wizard", "Elf", "Man", "Dwarf", "Hobbit"];
+      var currentAchievements = $rootScope.user.achievements;
+      var currentJourney = $rootScope.user.currentJourney;
+      var difficultyList = ["Wizard", "Elf", "Man", "Dwarf", "Hobbit"];
 
-        if(difficultyList.indexOf(currentJourney.difficulty) === 0){
-          currentAchievements.timesCompletedWizard += 1;
-          if(currentAchievements.fastestWizardTime === null){
-            currentAchievements.fastestWizardTime = (moment().valueOf() - currentJourney.startDate);
-          }else if(currentAchievements.fastestWizardTime > (moment().valueOf() - currentJourney.startDate)){
-            currentAchievements.fastestWizardTime = (moment().valueOf() - currentJourney.startDate);
-          }
-        }else if(difficultyList.indexOf(currentJourney.difficulty) === 1){
-          currentAchievements.timesCompletedElf += 1;
-          if(currentAchievements.fastestElfTime === null){
-            currentAchievements.fastestElfTime = (moment().valueOf() - currentJourney.startDate);
-          }else if(currentAchievements.fastestElfTime > (moment().valueOf() - currentJourney.startDate)){
-            currentAchievements.fastestElfTime = (moment().valueOf() - currentJourney.startDate);
-          }
-        }else if(difficultyList.indexOf(currentJourney.difficulty) === 2){
-          currentAchievements.timesCompletedMan += 1;
-          if(currentAchievements.fastestManTime === null){
-            currentAchievements.fastestManTime = (moment().valueOf() - currentJourney.startDate);
-          }else if(currentAchievements.fastestManTime > (moment().valueOf() - currentJourney.startDate)){
-            currentAchievements.fastestManTime = (moment().valueOf() - currentJourney.startDate);
-          }
-        }else if(difficultyList.indexOf(currentJourney.difficulty) === 3){
-          currentAchievements.timesCompletedDwarf += 1;
-          if(currentAchievements.fastestDwarfTime === null){
-            currentAchievements.fastestDwarfTime = (moment().valueOf() - currentJourney.startDate);
-          }else if(currentAchievements.fastestDwarfTime > (moment().valueOf() - currentJourney.startDate)){
-            currentAchievements.fastestDwarfTime = (moment().valueOf() - currentJourney.startDate);
-          }
-        }else if(difficultyList.indexOf(currentJourney.difficulty) === 4){
-          currentAchievements.timesCompletedHobbit += 1;
-          if(currentAchievements.fastestHobbitTime === null){
-            currentAchievements.fastestHobbitTime = (moment().valueOf() - currentJourney.startDate);
-          }else if(currentAchievements.fastestHobbitTime > (moment().valueOf() - currentJourney.startDate)){
-            currentAchievements.fastestHobbitTime = (moment().valueOf() - currentJourney.startDate);
-          }
-        };
-
-          Account.updateProfile({
-            achievements: currentAchievements
-          });
-
-          Account.updateProfile({
-            currentJourney: {
-              difficulty: null,
-              runs: null,
-              startDate: null,
-              totalMiles: null
-            }
-          });
+      if(difficultyList.indexOf(currentJourney.difficulty) === 0){
+        currentAchievements.timesCompletedWizard += 1;
+        if(currentAchievements.fastestWizardTime === null){
+          currentAchievements.fastestWizardTime = (moment().valueOf() - currentJourney.startDate);
+        }else if(currentAchievements.fastestWizardTime > (moment().valueOf() - currentJourney.startDate)){
+          currentAchievements.fastestWizardTime = (moment().valueOf() - currentJourney.startDate);
         }
+      }else if(difficultyList.indexOf(currentJourney.difficulty) === 1){
+        currentAchievements.timesCompletedElf += 1;
+        if(currentAchievements.fastestElfTime === null){
+          currentAchievements.fastestElfTime = (moment().valueOf() - currentJourney.startDate);
+        }else if(currentAchievements.fastestElfTime > (moment().valueOf() - currentJourney.startDate)){
+          currentAchievements.fastestElfTime = (moment().valueOf() - currentJourney.startDate);
+        }
+      }else if(difficultyList.indexOf(currentJourney.difficulty) === 2){
+        currentAchievements.timesCompletedMan += 1;
+        if(currentAchievements.fastestManTime === null){
+          currentAchievements.fastestManTime = (moment().valueOf() - currentJourney.startDate);
+        }else if(currentAchievements.fastestManTime > (moment().valueOf() - currentJourney.startDate)){
+          currentAchievements.fastestManTime = (moment().valueOf() - currentJourney.startDate);
+        }
+      }else if(difficultyList.indexOf(currentJourney.difficulty) === 3){
+        currentAchievements.timesCompletedDwarf += 1;
+        if(currentAchievements.fastestDwarfTime === null){
+          currentAchievements.fastestDwarfTime = (moment().valueOf() - currentJourney.startDate);
+        }else if(currentAchievements.fastestDwarfTime > (moment().valueOf() - currentJourney.startDate)){
+          currentAchievements.fastestDwarfTime = (moment().valueOf() - currentJourney.startDate);
+        }
+      }else if(difficultyList.indexOf(currentJourney.difficulty) === 4){
+        currentAchievements.timesCompletedHobbit += 1;
+        if(currentAchievements.fastestHobbitTime === null){
+          currentAchievements.fastestHobbitTime = (moment().valueOf() - currentJourney.startDate);
+        }else if(currentAchievements.fastestHobbitTime > (moment().valueOf() - currentJourney.startDate)){
+          currentAchievements.fastestHobbitTime = (moment().valueOf() - currentJourney.startDate);
+        }
+      };
+
+        Account.updateProfile({
+          achievements: currentAchievements
+        });
+
+        Account.updateProfile({
+          currentJourney: {
+            difficulty: null,
+            runs: null,
+            startDate: null,
+            totalMiles: null
+          }
+        });
       };
 
     $scope.getProfile();

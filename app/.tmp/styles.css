@@ -188,6 +188,34 @@ map {
   .titleNavbar .smallTitleNavbar p {
     font-size: 0.8em; }
 
+.smallMainMenuOptions {
+  z-index: -1;
+  opacity: 0;
+  position: relative;
+  top: -400px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -webkit-transition: all 500ms ease-in;
+          transition: all 500ms ease-in; }
+  .smallMainMenuOptions ul {
+    list-style: none;
+    padding: 10px 5px 10px 5px; }
+    .smallMainMenuOptions ul li {
+      font-size: 1.5em;
+      padding: 15px;
+      margin: auto; }
+    .smallMainMenuOptions ul a {
+      color: #864D2B; }
+      .smallMainMenuOptions ul a:hover {
+        color: #444;
+        text-decoration: none; }
+
+.fa-bars {
+  color: #E0DDD6;
+  float: right;
+  padding: 15px 15px 15px 15px; }
+  .fa-bars:hover {
+    color: #FFF; }
+
 legend {
   border-bottom: 1px solid #444; }
 
@@ -587,6 +615,74 @@ list-run a {
   background-color: #125acd; }
 
 /*********************
+* Media Queries
+*********************/
+@media screen and (max-width: 1040px) {
+  .col-sm-7 {
+    width: 100%; }
+
+  .col-sm-5 {
+    width: 100%; } }
+@media screen and (max-width: 900px) {
+  .navbar-header {
+    float: none;
+    width: 100%;
+    padding-left: 0;
+    background-color: #884D22;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+
+  .navbar-default .navbar-brand {
+    width: 100%;
+    margin: auto;
+    height: auto;
+    background-color: #884D22; }
+    .navbar-default .navbar-brand img {
+      max-width: 525px;
+      width: 100%;
+      height: auto;
+      margin: auto; } }
+@media screen and (max-width: 650px) {
+  .navbar-header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center; }
+    .navbar-header .titleNavbar {
+      -webkit-box-flex: 3;
+      -webkit-flex: 3;
+          -ms-flex: 3;
+              flex: 3; }
+    .navbar-header .fa-bars {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+          -ms-flex: 1;
+              flex: 1; }
+
+  .navbar-default {
+    height: 100px; }
+
+  .navbar-default .navbar-brand img {
+    max-width: 525px;
+    width: 100%;
+    height: auto;
+    display: inline-block; }
+
+  .mainMenuOptions {
+    display: none; } }
+@media screen and (min-width: 651px) {
+  .mainMenuOptions {
+    display: block; }
+
+  .smallMainMenuOptions {
+    display: none; }
+
+  .fa-bars {
+    display: none; } }
+/*********************
 * Animations
 *********************/
 .fadeZoom.ng-enter {
@@ -619,3 +715,9 @@ list-run a {
             transform: scale3d(0.8, 0.8, 0.8); }
   50% {
     opacity: 1; } }
+.showMenu {
+  background-color: #DBCDAA;
+  opacity: 1;
+  top: 0px;
+  -webkit-transition: all 500ms ease-out;
+          transition: all 500ms ease-out; }

@@ -4,4 +4,9 @@ angular.module('MyApp')
       return $auth.isAuthenticated();
     };
 
+    $scope.toggleMenu = function() {
+      var subMenu = angular.element(document.getElementsByClassName('smallMainMenuOptions'));
+      subMenu.toggleClass('showMenu');
+    };
+
   });

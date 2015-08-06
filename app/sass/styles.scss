@@ -244,6 +244,40 @@ map{
   }
 }
 
+.smallMainMenuOptions{
+  z-index: -1;
+  opacity: 0;
+  position: relative;
+  top: -400px;
+  box-shadow: $materialDesignLevelTwoShadow;
+  transition: all 500ms ease-in;
+  ul{
+    list-style: none;
+    padding:10px 5px 10px 5px;
+    li{
+      font-size: 1.5em;
+      padding:15px;
+      margin:auto;
+    }
+    a{
+      color: #864D2B;
+      &:hover{
+        color: #444;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.fa-bars{
+  color: #E0DDD6;
+  float:right;
+  padding:15px 15px 15px 15px;
+  &:hover{
+    color:#FFF;
+  }
+}
+
 legend{
   border-bottom: 1px solid #444;
 }
@@ -719,6 +753,80 @@ list-run a{
 }
 
 /*********************
+* Media Queries
+*********************/
+
+@media screen and (max-width: 1040px){
+  .col-sm-7{
+    width:100%;
+  }
+  .col-sm-5{
+    width:100%;
+  }
+}
+
+@media screen and (max-width: 900px){
+  .navbar-header{
+    float:none;
+    width:100%;
+    padding-left:0;
+    background-color: #884D22;
+    box-shadow: $materialDesignLevelTwoShadow
+  }
+  .navbar-default .navbar-brand{
+    width:100%;
+    margin:auto;
+    height:auto;
+    background-color: #884D22;
+    img{
+      max-width: 525px;
+      width:100%;
+      height:auto;
+      margin:auto;
+    }
+  }
+}
+
+@media screen and (max-width: 650px){
+  .navbar-header{
+    display:flex;
+    align-items: center;
+    .titleNavbar{
+      flex: 3;
+    }
+    .fa-bars{
+      flex:1;
+    }
+  }
+  .navbar-default{
+    height:100px;
+  }
+  .navbar-default .navbar-brand{
+     img{
+      max-width: 525px;
+      width:100%;
+      height:auto;
+      display:inline-block;
+    }
+  }
+  .mainMenuOptions{
+    display:none;
+  }
+}
+
+@media screen and (min-width: 651px){
+  .mainMenuOptions{
+    display:block;
+  }
+  .smallMainMenuOptions{
+    display:none;
+  }
+  .fa-bars{
+    display:none;
+  }
+}
+
+/*********************
 * Animations
 *********************/
 
@@ -756,4 +864,11 @@ list-run a{
   50% {
     opacity: 1;
   }
+}
+
+.showMenu{
+  background-color: #DBCDAA;
+  opacity:1;
+  top: 0px;
+  transition: all 500ms ease-out;
 }
