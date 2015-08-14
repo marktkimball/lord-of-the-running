@@ -72,6 +72,21 @@ map{
   width: 100%;
 }
 
+.videoOverlay{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5));
+  background-size: cover;
+}
+
 .logInContainer{
   position: absolute;
   height:100%;
@@ -79,7 +94,6 @@ map{
   padding-top: 200px;
   text-align: center;
   color: $sign-in-color;
-  background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5));
   .center-form{
     background-color:transparent;
     width:75%;
@@ -738,6 +752,57 @@ list-run a{
 }
 
 @media screen and (max-width:505px){
+  // .largeTitle h1{
+  //   font-size:1.5em;
+  // }
+  .titleSignIn{
+    h4{
+      font-size:0.75em;
+    }
+    .smallTitle h4{
+      font-size:0.4em;
+      margin:5px 0 0 0;
+    }
+  }
+  .logInContainer{
+    h1{
+      font-size: 1.5em;
+    }
+    padding-top:20px;
+    .row{
+      top:0;
+      transform:none;
+    }
+    .form-group{
+      width:90%;
+    }
+    h2{
+      font-size:1.25em;
+    }
+    .signup-or-separator .text{
+      font-size:0.5em;
+    }
+    p{
+      font-size: 0.8em;
+    }
+    .btn-success, .mainSignUpButton{
+      width:90%;
+    }
+  }
+  .password-strength-indicator{
+    top:5px;
+  }
+
+  .input-lg{
+    font-size:1em;
+    height:34px;
+  }
+  .has-feedback .form-control-feedback{
+    width:34px;
+    height:34px;
+    line-height:34px;
+  }
+
   .profileInfoText ul{
     padding:20px 0 0 0;
   }
