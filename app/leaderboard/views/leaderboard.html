@@ -6,7 +6,7 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <legend><i class="fa fa-trophy"></i> Leaderboard</legend>
-          <ul class="achievementsList">
+          <ul class="leaderboardList">
             <li><label class="control-label">Most Journeys Completed:</label> <span ng-if="leaders.timesCompleted">{{leaders.timesCompleted.timesCompleted}} - {{leaders.timesCompleted.displayName}}</span><span ng-if="!leaders.timesCompleted">Up for grabs! Complete the journey and claim the spot on the leaderboard!</span></li>
             <li><label class="control-label">Fastest Completion Time:</label> <span ng-if="fastestCompletedTime">{{fastestCompletedTime}} ({{leaders.fastestCompletedDifficulty}}) - {{leaders.fastestCompletedTime.displayName}}</span><span ng-if="!fastestCompletedTime">Up for grabs! Complete the journey and claim the spot on the leaderboard!</span></li>
             <li><label class="control-label">Fastest Hobbit Completion:</label> <span ng-if="fastestHobbitTime">{{fastestHobbitTime}} - {{leaders.fastestHobbitTime.displayName}}</span><span ng-if="!fastestHobbitTime">Up for grabs! Complete the journey as a Hobbit and claim the spot on the leaderboard!</span></li>

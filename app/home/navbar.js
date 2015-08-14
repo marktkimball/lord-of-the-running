@@ -6,7 +6,9 @@ angular.module('MyApp')
 
     $scope.toggleMenu = function() {
       var subMenu = angular.element(document.getElementsByClassName('smallMainMenuOptions'));
+      var menuIcon = angular.element(document.getElementsByClassName('fa-bars'));
       subMenu.toggleClass('showMenu');
+      menuIcon.toggleClass('rotatedMenu');
     };
 
   });

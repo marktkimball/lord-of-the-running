@@ -4,17 +4,19 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="panel panel-default">
+
         <div class="panel-body">
           <legend><i class="ion-arrow-graph-up-right"></i> Current Progress</legend>
           <p ng-if="!user.strava">You must link your Strava acccount to start the journey</p>
           <p ng-if="!user.currentJourney.difficulty">Click <label class="control-label"><a href="#/begin"><i class="fa fa-map-signs"></i> Begin Quest</a></label> to select a difficulty level and start the journey</p>
-          <ul ng-if="user.strava && user.currentJourney.difficulty" class="achievementsList splitUl">
+          <div class="row">
+          <ul ng-if="user.strava && user.currentJourney.difficulty" class="col-md-6 progressUL">
             <li><label class="control-label">Miles until Mount Doom:</label> <span class="pro5">{{achievements.untilMountDoom | number : 2}} miles</span></li>
             <li><label class="control-label">Last Landmark:</label> <span class="pro5">{{currentPositionInfo.landmark}}</span></li>
             <li><label class="control-label">Next Landmark:</label> <span class="pro5">{{currentPositionInfo.nextLandmark}}</span></li>
             <li><label class="control-label">Miles Until Next Landmark:</label> <span class="pro5">{{currentPositionInfo.nextLandmarkMiles - totalMEMiles | number : 2}} miles</span></li>
           </ul>
-          <ul ng-if="user.strava && user.currentJourney.difficulty" class="achievementsList splitUl">
+          <ul ng-if="user.strava && user.currentJourney.difficulty" class="col-md-6 progressUL">
             <li><label class="control-label">Difficulty Level:</label> <span class="pro5">{{user.currentJourney.difficulty}}</span></li>
             <li><label class="control-label">Current Journey Middle Earth Mileage:</label> <span ng-if="user.currentJourney.runs.length !== 0" class="pro5">{{totalMEMiles | number : 2}} miles</span><span ng-if="user.currentJourney.runs.length === 0" class="pro5">0.00</span></li>
             <li><label class="control-label">Current Journey Total Mileage:</label> <span ng-if="user.currentJourney.runs.length !== 0" class="pro5">{{user.currentJourney.totalMiles | number : 2}} miles</span><span ng-if="user.currentJourney.runs.length === 0" class="pro5">0.00</span></li>
@@ -31,6 +33,9 @@
             </div>
           </div>
         </div>
+
+        </div>
+
       </div>
     </div>
   </div>
