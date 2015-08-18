@@ -8,6 +8,7 @@ angular.module('MyApp', [
   'ngMap',
   'map',
   'leaderboard',
+  'preview',
   'moment'
 ])
 
@@ -23,6 +24,10 @@ angular.module('MyApp', [
     .when('/leaderboard', {
       templateUrl: 'leaderboard/views/leaderboard.html',
       controller: 'LeaderboardController'
+    })
+    .when('/preview', {
+      templateUrl: 'preview/views/preview.html',
+      controller: 'PreviewController'
     })
     .when('/404', {
       template: '<h1>Sorry, page not found</h1>'

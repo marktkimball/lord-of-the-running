@@ -100,7 +100,7 @@ map{
   }
   .row{
     position: relative;
-    top: 50%;
+    top: 56%;
     transform: translateY(-70%);
   }
   h1, h2, h3, h4, h5{
@@ -612,6 +612,43 @@ list-run a{
   }
 }
 
+.previewView{
+  width:100%;
+  display:flex;
+  align-items: center;
+  div{
+    flex:1;
+    text-align: center;
+    img{
+      border:3px $main-font-color solid;
+    }
+    &:nth-of-type(2){
+      flex:20;
+    }
+    img{
+      max-width: 90%;
+      width:auto;
+      height:auto;
+    }
+  }
+}
+
+.previewCaption{
+  text-align: center;
+  h4{
+    margin:40px;
+  }
+}
+
+.altPreview{
+  text-align: center;
+  display:none;
+  margin-top:20px;
+  a{
+    margin: 0 10px;
+  }
+}
+
 .btn {
   font-weight: bold;
   border-radius: 2px;
@@ -749,12 +786,12 @@ list-run a{
     width:90%;
     height:500px;
   }
+  .fa-3x{
+    font-size:2em;
+  }
 }
 
 @media screen and (max-width:505px){
-  // .largeTitle h1{
-  //   font-size:1.5em;
-  // }
   .titleSignIn{
     h4{
       font-size:0.75em;
@@ -778,6 +815,9 @@ list-run a{
     }
     h2{
       font-size:1.25em;
+    }
+    h4{
+      font-size: 1em;
     }
     .signup-or-separator .text{
       font-size:0.5em;
@@ -842,6 +882,16 @@ list-run a{
     padding-left:0;
     padding-right:0;
     font-size:0.8em;
+  }
+  .altPreview{
+    display:block;
+  }
+  .previewView div:nth-of-type(odd){
+    display:none;
+  }
+  .previewCaption h4{
+    margin:20px;
+    font-size:1em;
   }
 }
 

@@ -79,7 +79,7 @@ map {
     width: 75%; }
   .logInContainer .row {
     position: relative;
-    top: 50%;
+    top: 56%;
     -webkit-transform: translateY(-70%);
             transform: translateY(-70%); }
   .logInContainer h1, .logInContainer h2, .logInContainer h3, .logInContainer h4, .logInContainer h5 {
@@ -516,6 +516,46 @@ list-run a {
   .modal-content .modal-footer {
     border-color: #393834; }
 
+.previewView {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .previewView div {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    text-align: center; }
+    .previewView div img {
+      border: 3px #393834 solid; }
+    .previewView div:nth-of-type(2) {
+      -webkit-box-flex: 20;
+      -webkit-flex: 20;
+          -ms-flex: 20;
+              flex: 20; }
+    .previewView div img {
+      max-width: 90%;
+      width: auto;
+      height: auto; }
+
+.previewCaption {
+  text-align: center; }
+  .previewCaption h4 {
+    margin: 40px; }
+
+.altPreview {
+  text-align: center;
+  display: none;
+  margin-top: 20px; }
+  .altPreview a {
+    margin: 0 10px; }
+
 .btn {
   font-weight: bold;
   border-radius: 2px;
@@ -632,7 +672,10 @@ list-run a {
 
   map {
     width: 90%;
-    height: 500px; } }
+    height: 500px; }
+
+  .fa-3x {
+    font-size: 2em; } }
 @media screen and (max-width: 505px) {
   .titleSignIn h4 {
     font-size: 0.75em; }
@@ -652,6 +695,8 @@ list-run a {
       width: 90%; }
     .logInContainer h2 {
       font-size: 1.25em; }
+    .logInContainer h4 {
+      font-size: 1em; }
     .logInContainer .signup-or-separator .text {
       font-size: 0.5em; }
     .logInContainer p {
@@ -701,7 +746,17 @@ list-run a {
   list-run a {
     padding-left: 0;
     padding-right: 0;
-    font-size: 0.8em; } }
+    font-size: 0.8em; }
+
+  .altPreview {
+    display: block; }
+
+  .previewView div:nth-of-type(odd) {
+    display: none; }
+
+  .previewCaption h4 {
+    margin: 20px;
+    font-size: 1em; } }
 @media screen and (min-width: 651px) {
   .mainMenuOptions {
     display: block; }
